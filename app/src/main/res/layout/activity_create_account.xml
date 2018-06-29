@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    tools:context=".presentation.views.landing.CreateAccountActivity">
+
+    <ImageView
+        android:id="@+id/user_image"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_marginStart="@dimen/activity_margin_2"
+        android:layout_marginTop="@dimen/activity_margin_2"
+        android:src="@drawable/rider_image_oval_267"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/user_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/volkjumps17"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/font_size_20_sp"
+        app:layout_constraintBottom_toTopOf="@+id/user_number_of_rides"
+        app:layout_constraintStart_toStartOf="@+id/user_number_of_rides" />
+
+    <TextView
+        android:id="@+id/user_number_of_rides"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/activity_margin"
+        android:layout_marginStart="@dimen/activity_margin"
+        android:text="@string/_21_rides_this_month"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/font_size_15_sp"
+        app:layout_constraintBottom_toBottomOf="@id/user_image"
+        app:layout_constraintStart_toEndOf="@id/user_image" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/stride_logo"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="@dimen/activity_margin_4"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ms_horseshoe_white"
+        app:backgroundTint="@color/colorWhite"
+        app:layout_constraintStart_toStartOf="@id/user_image"
+        app:layout_constraintTop_toBottomOf="@id/user_number_of_rides" />
+
+    <ImageView
+        android:id="@+id/mockup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/generic_padding"
+        android:src="@drawable/mockup"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/user_image" />
+
+    <TextView
+        android:id="@+id/make_it_rain_carrots"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_margin_2"
+        android:text="@string/make_it_rain_carrots"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/font_size_20_sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/mockup" />
+
+    <Button
+        android:id="@+id/btn_sign_up"
+        style="@style/whiteBrandButtonStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_margin_2"
+        android:text="@string/sign_up"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@id/mockup"
+        app:layout_constraintStart_toStartOf="@id/mockup"
+        app:layout_constraintTop_toBottomOf="@id/make_it_rain_carrots" />
+
+    <Button
+        android:id="@+id/btn_login"
+        style="@style/outlineBrandButtonStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_margin"
+        android:text="@string/log_in"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@id/mockup"
+        app:layout_constraintStart_toStartOf="@id/mockup"
+        app:layout_constraintTop_toBottomOf="@id/btn_sign_up" />
+
+</android.support.constraint.ConstraintLayout>

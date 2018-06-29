@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Mystride</string>
+    <string name="volkjumps17">volkjumps_17</string>
+    <string name="_21_rides_this_month">21 Rides this month</string>
+    <string name="make_it_rain_carrots">Make It Rain Carrots</string>
+    <string name="sign_up">Sign up</string>
+    <string name="log_in">Log in</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="continue_label">continue</string>
+</resources>
