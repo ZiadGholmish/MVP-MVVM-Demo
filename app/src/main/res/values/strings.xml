@@ -13,4 +13,5 @@
     <string name="phone_mask">(- - -) - - - - - - -</string>
     <string name="please_enter_your_mobile_phone_number">Please enter your mobile phone number.</string>
     <string name="select_country">Select country</string>
+    <string name="first_name_required">Please enter your first name</string>
 </resources>
