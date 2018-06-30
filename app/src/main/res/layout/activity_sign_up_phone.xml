@@ -14,7 +14,7 @@
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:popupTheme="@style/AppTheme.PopupOverlay" />
     </android.support.design.widget.AppBarLayout>
@@ -26,8 +26,11 @@
         android:layout_marginEnd="@dimen/activity_margin_2"
         android:layout_marginStart="@dimen/activity_margin_2"
         android:layout_marginTop="@dimen/activity_margin_3"
-        android:enabled="false"
+        android:cursorVisible="false"
+        android:enabled="true"
+        android:focusableInTouchMode="false"
         android:gravity="top"
+        android:longClickable="false"
         android:paddingStart="@dimen/activity_margin"
         android:text="United States"
         android:textColor="@color/primaryText"
@@ -36,7 +39,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/app_bar_layout" />
 
-
     <EditText
         android:id="@+id/country_code"
         android:layout_width="80dp"
@@ -44,8 +46,10 @@
         android:layout_marginEnd="@dimen/generic_padding"
         android:layout_marginStart="@dimen/activity_margin_2"
         android:layout_marginTop="@dimen/activity_margin"
-        android:enabled="false"
+        android:cursorVisible="false"
+        android:focusableInTouchMode="false"
         android:gravity="top|center"
+        android:longClickable="false"
         android:text="+1"
         android:textColor="@color/primaryText"
         android:textSize="@dimen/font_size_18_sp"
