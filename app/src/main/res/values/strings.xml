@@ -8,4 +8,8 @@
     <string name="first_name">First Name</string>
     <string name="last_name">Last Name</string>
     <string name="continue_label">continue</string>
+    <string name="name">Name</string>
+    <string name="your_phone">Your Phone</string>
+    <string name="phone_mask">(- - -) - - - - - - -</string>
+    <string name="please_enter_your_mobile_phone_number">Please enter your mobile phone number.</string>
 </resources>

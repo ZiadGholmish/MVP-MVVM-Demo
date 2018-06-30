@@ -15,7 +15,7 @@ class CreateAccountActivity : AppCompatActivity() {
         openSignUp()
     }
 
-    fun openSignUp() {
+    private fun openSignUp() {
         btn_sign_up.setOnClickListener {
             val intent = Intent(this, SignUpFirstLastNameActivity::class.java)
             startActivity(intent)
