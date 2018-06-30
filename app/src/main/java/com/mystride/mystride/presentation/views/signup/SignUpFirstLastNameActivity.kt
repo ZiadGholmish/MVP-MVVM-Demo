@@ -3,6 +3,7 @@ package com.mystride.mystride.presentation.views.signup
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
 import com.mystride.mystride.R
 import com.mystride.mystride.presentation.views.phone.SignUpPhoneActivity
 import kotlinx.android.synthetic.main.activity_create_account.*
@@ -23,6 +24,16 @@ class SignUpFirstLastNameActivity : AppCompatActivity() {
             val intent = Intent(this, SignUpPhoneActivity::class.java)
             startActivity(intent)
         }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> {
+                onBackPressed()
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
 }

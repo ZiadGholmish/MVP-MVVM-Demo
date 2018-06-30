@@ -23,7 +23,7 @@
             android:name=".presentation.views.phone.SignUpPhoneActivity"
             android:label="@string/your_phone" />
         <activity
-            android:name=".presentation.views.country.CountyCodesActivity"
+            android:name=".presentation.views.country.CountriesCodesActivity"
             android:label="@string/select_country" />
     </application>
 
