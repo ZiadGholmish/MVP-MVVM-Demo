@@ -12,12 +12,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/activity_margin_2"
         android:textColor="@color/primaryText"
-        android:textSize="@dimen/font_size_15_sp"
+        android:textSize="@dimen/font_size_18_sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/country_code"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:text="United States" />
+        tools:text="United States" />
 
     <TextView
         android:id="@+id/country_code"
@@ -30,5 +30,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:text="+1" />
+        tools:text="+1" />
 </android.support.constraint.ConstraintLayout>

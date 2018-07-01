@@ -1,18 +1,22 @@
 package com.mystride.presentation.views.country
 
+import android.app.Activity
 import android.arch.lifecycle.ViewModelProviders
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.view.MenuItem
 import com.mystride.app.MyStrideApp
+import com.mystride.constatns.AppConstant
 import com.mystride.dagger.ViewModelFactory
 import com.mystride.data.remote.models.CountryModel
 import com.mystride.mystride.R
 import kotlinx.android.synthetic.main.activity_county_codes.*
 import javax.inject.Inject
 
-class CountriesCodesActivity : AppCompatActivity(), CountriesCodeController {
+class CountriesCodesActivity : AppCompatActivity(), CountriesCodeController, CountriesInterface {
+
 
     @Inject
     lateinit var mPresenter: CountriesCodesPresenter
@@ -47,7 +51,7 @@ class CountriesCodesActivity : AppCompatActivity(), CountriesCodeController {
     }
 
     override fun showCountriesCodeList(countriesList: List<CountryModel>) {
-        val countriesCodeAdapter = CountriesCodeAdapter(countriesList)
+        val countriesCodeAdapter = CountriesCodeAdapter(countriesList, this)
         countries_recycler.adapter = countriesCodeAdapter
     }
 
@@ -66,5 +70,12 @@ class CountriesCodesActivity : AppCompatActivity(), CountriesCodeController {
     }
 
     override fun hideLoading() {
+    }
+
+    override fun onCountrySelected(selectedCountry: CountryModel) {
+        val intent = Intent()
+        intent.putExtra(AppConstant.SELECTED_COUNTRY_INTENT_NAME, selectedCountry)
+        setResult(Activity.RESULT_OK, intent)
+        onBackPressed()
     }
 }

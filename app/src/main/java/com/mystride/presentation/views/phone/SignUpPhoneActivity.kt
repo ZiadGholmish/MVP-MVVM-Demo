@@ -1,17 +1,22 @@
 package com.mystride.presentation.views.phone
 
+import android.app.Activity
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import com.github.vacxe.phonemask.PhoneMaskManager
 import com.jakewharton.rxbinding2.widget.RxTextView
+import com.mystride.constatns.AppConstant
+import com.mystride.data.remote.models.CountryModel
 import com.mystride.mystride.R
 import com.mystride.presentation.views.country.CountriesCodesActivity
 import io.reactivex.Observable
 import kotlinx.android.synthetic.main.activity_sign_up_phone.*
 
 class SignUpPhoneActivity : AppCompatActivity() {
+
+    val CHOOSE_COUNTRY_REQUEST_CODE = 100
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,7 +25,6 @@ class SignUpPhoneActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         setPhoneMask()
         openCountriesCodeScreen()
-
         addPhoneNumberObservable()
     }
 
@@ -34,7 +38,7 @@ class SignUpPhoneActivity : AppCompatActivity() {
     private fun openCountriesCodeScreen() {
         country_name.setOnClickListener {
             val intent = Intent(this, CountriesCodesActivity::class.java)
-            startActivity(intent)
+            startActivityForResult(intent, CHOOSE_COUNTRY_REQUEST_CODE)
         }
     }
 
@@ -63,6 +67,20 @@ class SignUpPhoneActivity : AppCompatActivity() {
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (requestCode == CHOOSE_COUNTRY_REQUEST_CODE && resultCode == RESULT_OK) {
+            data?.let { showSelectedCountry(it.getParcelableExtra(AppConstant.SELECTED_COUNTRY_INTENT_NAME)) }
+        } else {
+            super.onActivityResult(requestCode, resultCode, data)
+        }
+    }
+
+    private fun showSelectedCountry(selectedCountry: CountryModel) {
+        country_name.setText(selectedCountry.name)
+        country_code.setText(selectedCountry.dial_code)
     }
 
 }

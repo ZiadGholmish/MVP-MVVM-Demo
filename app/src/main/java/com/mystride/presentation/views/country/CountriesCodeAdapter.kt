@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import com.mystride.data.remote.models.CountryModel
 import com.mystride.mystride.R
 
-class CountriesCodeAdapter(private val countriesList: List<CountryModel>) : RecyclerView.Adapter<CountryCodeViewHolder>() {
+class CountriesCodeAdapter(private val countriesList: List<CountryModel>, val countriesInterface: CountriesInterface) : RecyclerView.Adapter<CountryCodeViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CountryCodeViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -15,6 +15,9 @@ class CountriesCodeAdapter(private val countriesList: List<CountryModel>) : Recy
 
     override fun onBindViewHolder(holder: CountryCodeViewHolder, position: Int) {
         holder.bindData(countriesList[holder.adapterPosition])
+        holder.itemView.setOnClickListener {
+            countriesInterface.onCountrySelected(countriesList[holder.adapterPosition])
+        }
     }
 
     override fun getItemCount(): Int {
