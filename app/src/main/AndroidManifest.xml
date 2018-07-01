@@ -3,27 +3,26 @@
     package="com.mystride.mystride">
 
     <application
+        android:name="com.mystride.app.MyStrideApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:name="com.mystride.app.MyStrideApp"
         android:theme="@style/AppTheme">
         <activity android:name="com.mystride.presentation.views.landing.CreateAccountActivity">
-        </activity>
-        <activity
-            android:name="com.mystride.presentation.views.signup.SignUpFirstLastNameActivity"
-            android:label="@string/name" />
-        <activity
-            android:name="com.mystride.presentation.views.phone.SignUpPhoneActivity"
-            android:label="@string/your_phone" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.mystride.presentation.views.signup.SignUpFirstLastNameActivity"
+            android:label="@string/name" />
+        <activity
+            android:name="com.mystride.presentation.views.phone.SignUpPhoneActivity"
+            android:label="@string/your_phone"></activity>
         <activity
             android:name="com.mystride.presentation.views.country.CountriesCodesActivity"
             android:label="@string/select_country" />

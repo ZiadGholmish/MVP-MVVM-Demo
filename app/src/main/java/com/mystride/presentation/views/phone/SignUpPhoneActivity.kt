@@ -56,10 +56,7 @@ class SignUpPhoneActivity : AppCompatActivity() {
     private fun addPhoneNumberObservable(selectedCountry: CountryModel) {
         RxTextView
                 .textChanges(phone_number)
-                .debounce(2, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
-                .distinctUntilChanged()
                 .subscribe {
-
                     val isValidPhone = (textWatcher.phone.length - 1 == selectedCountry.number_length)
                     val isEmptyPhone = textWatcher.phone.isEmpty()
                     val isShortPhone = textWatcher.phone.length - 1 < selectedCountry.number_length
