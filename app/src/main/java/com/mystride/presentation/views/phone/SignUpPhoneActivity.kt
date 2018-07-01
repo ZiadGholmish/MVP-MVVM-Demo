@@ -16,13 +16,15 @@ import com.mystride.mystride.R
 import com.mystride.presentation.views.country.CountriesCodesActivity
 import com.mystride.presentation.views.utils.PhoneMaskWatcher
 import io.reactivex.Observable
+import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.activity_sign_up_phone.*
+import java.util.concurrent.TimeUnit
 
 class SignUpPhoneActivity : AppCompatActivity() {
 
-    val CHOOSE_COUNTRY_REQUEST_CODE = 100
+    private val CHOOSE_COUNTRY_REQUEST_CODE = 100
 
-    lateinit var textWatcher: PhoneMaskWatcher
+    private lateinit var textWatcher: PhoneMaskWatcher
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,7 +42,6 @@ class SignUpPhoneActivity : AppCompatActivity() {
         setPhoneMask(selectedCountry)
     }
 
-
     private fun initPhoneNumber() {
         textWatcher = PhoneMaskWatcher("(###) ####-####", phone_number)
         phone_number.addTextChangedListener(textWatcher)
@@ -57,20 +58,28 @@ class SignUpPhoneActivity : AppCompatActivity() {
         }
     }
 
-    private fun addPhoneNumberObservable(selectedCountry: CountryModel): Observable<Boolean> {
-        phone_number_layout.error = getString(R.string.please_enter_your_mobile_phone_number)
-        val phoneNumberObservable = RxTextView
+    private fun addPhoneNumberObservable(selectedCountry: CountryModel) {
+
+        RxTextView
                 .textChanges(phone_number)
-                .map { textWatcher.phone.length - 1 == selectedCountry.number_length }
-                .distinctUntilChanged()
-        phoneNumberObservable.subscribe { isValidPhone ->
-            phone_number_layout.isErrorEnabled = !isValidPhone
-            btn_continue.isEnabled = isValidPhone
-            if (!isValidPhone) {
-                phone_number_layout.error = getString(R.string.please_enter_your_mobile_phone_number)
-            }
-        }
-        return phoneNumberObservable
+                .debounce(1, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
+                .subscribe {
+
+                    val isValidPhone = (textWatcher.phone.length - 1 == selectedCountry.number_length)
+                    val isEmptyPhone = textWatcher.phone.isEmpty()
+                    val isShortPhone = textWatcher.phone.length - 1 < selectedCountry.number_length
+
+                    phone_number_layout.isErrorEnabled = !isValidPhone
+                    btn_continue.isEnabled = isValidPhone
+
+                    if (!isValidPhone && isEmptyPhone) {
+                        phone_number_layout.error = getString(R.string.please_enter_your_mobile_phone_number)
+                    }
+
+                    if (!isValidPhone && !isEmptyPhone && isShortPhone) {
+                        phone_number_layout.error = getString(R.string.please_enter_entire_number)
+                    }
+                }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
