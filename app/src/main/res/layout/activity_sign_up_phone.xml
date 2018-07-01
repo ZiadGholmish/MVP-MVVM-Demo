@@ -92,6 +92,18 @@
 
     </android.support.design.widget.TextInputLayout>
 
+    <TextView
+        android:id="@+id/error_view"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/activity_margin"
+        android:text="@string/we_don_t_currently_support_that_country"
+        android:textColor="@color/errorColor"
+        android:visibility="gone"
+        android:textSize="@dimen/font_size_15_sp"
+        app:layout_constraintBottom_toBottomOf="@id/phone_number_layout"
+        app:layout_constraintEnd_toEndOf="@id/phone_number_layout"
+        app:layout_constraintStart_toStartOf="@id/country_code_layout" />
 
     <TextView
         android:id="@+id/please_enter_your_mobile"

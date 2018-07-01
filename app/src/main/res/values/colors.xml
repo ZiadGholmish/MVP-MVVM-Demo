@@ -7,6 +7,8 @@
     <color name="secondaryText">#B9BDC1</color>
     <color name="primaryText">#787D85</color>
     <color name="dimmedColorAccent">#87d7c3</color>
+    <color name="errorColor">#da4453</color>
+
 
 
 </resources>

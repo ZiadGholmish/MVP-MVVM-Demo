@@ -15,4 +15,5 @@
     <string name="select_country">Select country</string>
     <string name="first_name_required">Please enter your first name</string>
     <string name="mobile_number_short">Please enter your entire mobile number</string>
+    <string name="we_don_t_currently_support_that_country">We don’t currently support that country</string>
 </resources>

@@ -13,7 +13,7 @@ import java.util.regex.Pattern
 
  class PhoneMaskWatcher( var mask: String, private val editText: EditText) : TextWatcher {
 
-    val notDigitRegex = Pattern.compile("[^\\d]+")
+    private val notDigitRegex = Pattern.compile("[^\\d]+")
     private val maskSymbol = "#"
     private val maskPattern: Pattern = Pattern.compile(maskSymbol)
     private val region: String = ""

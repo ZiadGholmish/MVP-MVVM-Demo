@@ -94,11 +94,24 @@ class SignUpPhoneActivity : AppCompatActivity() {
     }
 
     private fun showSelectedCountryDetails(selectedCountry: CountryModel) {
+        isCountrySupported(selectedCountry.supported)
         country_name.setText(selectedCountry.name)
         country_code.setText(selectedCountry.dial_code)
         phone_number.setText("")
         phone_number.hint = selectedCountry.mask_hint
     }
 
+    private fun isCountrySupported(supported: Boolean) {
+        phone_number_layout.isErrorEnabled = supported
+        phone_number.isEnabled = supported
+        country_code_layout.isErrorEnabled = !supported
+
+        if (supported) {
+            error_view.visibility = View.GONE
+        } else {
+            error_view.visibility = View.VISIBLE
+            country_code_layout.error = " "
+        }
+    }
 
 }

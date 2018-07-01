@@ -5,7 +5,8 @@
     "code": "US",
     "mask": "(###) ####-####",
     "mask_hint": "(---) --- ----",
-    "number_length": 11
+    "number_length": 11,
+    "supported": true
   },
   {
     "name": "Afghanistan",
@@ -13,7 +14,8 @@
     "code": "AF",
     "mask": "(###) ###-####",
     "mask_hint": "(---) --- ----",
-    "number_length": 10
+    "number_length": 10,
+    "supported": true
   },
   {
     "name": "Aland Islands",
@@ -21,7 +23,8 @@
     "code": "AX",
     "mask": "(###) ####-####",
     "mask_hint": "(---) ---- ----",
-    "number_length": 11
+    "number_length": 11,
+    "supported": false
   },
   {
     "name": "Albania",
@@ -29,7 +32,8 @@
     "code": "AL",
     "mask": "(###) ####-####",
     "mask_hint": "(---) ---- ----",
-    "number_length": 11
+    "number_length": 11,
+    "supported": true
   },
   {
     "name": "Algeria",
@@ -37,7 +41,8 @@
     "code": "DZ",
     "mask": "(###) ####-####",
     "mask_hint": "(---) ---- ----",
-    "number_length": 11
+    "number_length": 11,
+    "supported": true
   },
   {
     "name": "AmericanSamoa",
@@ -45,7 +50,8 @@
     "code": "AS",
     "mask": "(###) ####-####",
     "mask_hint": "(---) ---- ----",
-    "number_length": 11
+    "number_length": 11,
+    "supported": true
   },
   {
     "name": "Andorra",
@@ -61,7 +67,8 @@
     "code": "AO",
     "mask": "(###) ####-####",
     "mask_hint": "(---) ---- ----",
-    "number_length": 11
+    "number_length": 11,
+    "supported": true
   },
   {
     "name": "Anguilla",
@@ -69,7 +76,8 @@
     "code": "AI",
     "mask": "(###) ####-####",
     "mask_hint": "(---) ---- ----",
-    "number_length": 11
+    "number_length": 11,
+    "supported": true
   },
   {
     "name": "Antarctica",
@@ -77,7 +85,8 @@
     "code": "AQ",
     "mask": "(###) ####-####",
     "mask_hint": "(---) ---- ----",
-    "number_length": 11
+    "number_length": 11,
+    "supported": true
   },
   {
     "name": "Antigua and Barbuda",
@@ -85,7 +94,8 @@
     "code": "AG",
     "mask": "(###) ####-####",
     "mask_hint": "(---) ---- ----",
-    "number_length": 11
+    "number_length": 11,
+    "supported": true
   },
   {
     "name": "Argentina",
@@ -93,7 +103,8 @@
     "code": "AR",
     "mask": "(###) ####-####",
     "mask_hint": "(---) ---- ----",
-    "number_length": 11
+    "number_length": 11,
+    "supported": true
   },
   {
     "name": "Armenia",
@@ -101,7 +112,8 @@
     "code": "AM",
     "mask": "(###) ####-####",
     "mask_hint": "(---) ---- ----",
-    "number_length": 11
+    "number_length": 11,
+    "supported": true
   },
   {
     "name": "Aruba",
@@ -109,7 +121,8 @@
     "code": "AW",
     "mask": "(###) ####-####",
     "mask_hint": "(---) ---- ----",
-    "number_length": 11
+    "number_length": 11,
+    "supported": true
   },
   {
     "name": "Australia",
@@ -117,7 +130,8 @@
     "code": "AU",
     "mask": "(###) ####-####",
     "mask_hint": "(---) ---- ----",
-    "number_length": 11
+    "number_length": 11,
+    "supported": true
   },
   {
     "name": "Austria",
@@ -125,7 +139,8 @@
     "code": "AT",
     "mask": "(###) ####-####",
     "mask_hint": "(---) ---- ----",
-    "number_length": 11
+    "number_length": 11,
+    "supported": true
   },
   {
     "name": "Azerbaijan",
@@ -133,7 +148,8 @@
     "code": "AZ",
     "mask": "(###) ####-####",
     "mask_hint": "(---) ---- ----",
-    "number_length": 11
+    "number_length": 11,
+    "supported": true
   },
   {
     "name": "Bahamas",
@@ -141,7 +157,8 @@
     "code": "BS",
     "mask": "(###) ####-####",
     "mask_hint": "(---) ---- ----",
-    "number_length": 11
+    "number_length": 11,
+    "supported": true
   },
   {
     "name": "Bahrain",
@@ -149,7 +166,8 @@
     "code": "BH",
     "mask": "(###) ####-####",
     "mask_hint": "(---) ---- ----",
-    "number_length": 11
+    "number_length": 11,
+    "supported": true
   },
   {
     "name": "Bangladesh",
@@ -157,7 +175,8 @@
     "code": "BD",
     "mask": "(###) ####-####",
     "mask_hint": "(---) ---- ----",
-    "number_length": 11
+    "number_length": 11,
+    "supported": true
   },
   {
     "name": "Barbados",
@@ -165,7 +184,8 @@
     "code": "BB",
     "mask": "(###) ####-####",
     "mask_hint": "(---) ---- ----",
-    "number_length": 11
+    "number_length": 11,
+    "supported": true
   },
   {
     "name": "Belarus",
@@ -173,7 +193,8 @@
     "code": "BY",
     "mask": "(###) ####-####",
     "mask_hint": "(---) ---- ----",
-    "number_length": 11
+    "number_length": 11,
+    "supported": true
   },
   {
     "name": "Belgium",
@@ -181,7 +202,8 @@
     "code": "BE",
     "mask": "(###) ####-####",
     "mask_hint": "(---) ---- ----",
-    "number_length": 11
+    "number_length": 11,
+    "supported": true
   },
   {
     "name": "Belize",
@@ -189,7 +211,8 @@
     "code": "BZ",
     "mask": "(###) ####-####",
     "mask_hint": "(---) ---- ----",
-    "number_length": 11
+    "number_length": 11,
+    "supported": true
   },
   {
     "name": "Benin",
@@ -197,7 +220,8 @@
     "code": "BJ",
     "mask": "(###) ####-####",
     "mask_hint": "(---) ---- ----",
-    "number_length": 11
+    "number_length": 11,
+    "supported": true
   },
   {
     "name": "Bermuda",
@@ -205,6 +229,7 @@
     "code": "BM",
     "mask": "(###) ####-####",
     "mask_hint": "(---) ---- ----",
-    "number_length": 11
+    "number_length": 11,
+    "supported": true
   }
 ]
