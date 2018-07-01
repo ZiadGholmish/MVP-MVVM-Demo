@@ -3,6 +3,7 @@ package com.mystride.dagger
 import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
+import com.google.gson.Gson
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -24,5 +25,10 @@ class AppModule(application: Application) {
         return application.getSharedPreferences("my_stride_shared", 0)
     }
 
+    @Singleton
+    @Provides
+    fun provideGson(): Gson {
+        return Gson()
+    }
 }
 

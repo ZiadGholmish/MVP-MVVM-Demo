@@ -1,6 +1,9 @@
 package com.mystride.app
 
 import android.app.Application
+import com.mystride.dagger.AppComponent
+import com.mystride.dagger.AppModule
+import com.mystride.dagger.DaggerAppComponent
 
 class MyStrideApp : Application() {
 
