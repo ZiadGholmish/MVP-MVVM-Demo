@@ -91,7 +91,7 @@ import java.util.regex.Pattern
             }
 
             val phone = notDigitRegex.matcher(rawMaskBuilder.toString()).replaceAll("")
-            this.phone = "+$phone"
+            this.phone = "$phone"
 
             valueListener?.onPhoneChanged(this.phone)
             state = EditState.EDIT

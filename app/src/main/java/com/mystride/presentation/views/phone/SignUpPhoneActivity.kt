@@ -37,7 +37,6 @@ class SignUpPhoneActivity : AppCompatActivity() {
         setPhoneMask(selectedCountry)
     }
 
-
     private fun initPhoneNumber() {
         textWatcher = PhoneMaskWatcher("(###) ####-####", phone_number)
         phone_number.addTextChangedListener(textWatcher)
@@ -57,9 +56,9 @@ class SignUpPhoneActivity : AppCompatActivity() {
         RxTextView
                 .textChanges(phone_number)
                 .subscribe {
-                    val isValidPhone = (textWatcher.phone.length - 1 == selectedCountry.number_length)
+                    val isValidPhone = (textWatcher.phone.length  == selectedCountry.number_length)
                     val isEmptyPhone = textWatcher.phone.isEmpty()
-                    val isShortPhone = textWatcher.phone.length - 1 < selectedCountry.number_length
+                    val isShortPhone = textWatcher.phone.length  < selectedCountry.number_length
 
                     phone_number_layout.isErrorEnabled = !isValidPhone
                     btn_continue.isEnabled = isValidPhone
