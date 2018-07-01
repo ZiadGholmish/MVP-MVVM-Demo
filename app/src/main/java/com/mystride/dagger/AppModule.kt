@@ -1,4 +1,4 @@
-package com.mystride.mystride.presentation.views.dagger
+package com.mystride.dagger
 
 import android.app.Application
 import android.content.Context
@@ -21,7 +21,7 @@ class AppModule(application: Application) {
     @Singleton
     @Provides
     fun provideShared(): SharedPreferences {
-        return application.getSharedPreferences("rest_app", 0)
+        return application.getSharedPreferences("my_stride_shared", 0)
     }
 
 }

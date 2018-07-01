@@ -1,4 +1,4 @@
-package com.mystride.mystride.presentation.views.country
+package com.mystride.presentation.views.country
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater

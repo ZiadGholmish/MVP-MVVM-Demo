@@ -1,4 +1,4 @@
-package com.mystride.mystride.presentation.views.app
+package com.mystride.app
 
 import android.app.Application
 

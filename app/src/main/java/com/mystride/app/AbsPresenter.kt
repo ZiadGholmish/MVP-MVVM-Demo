@@ -1,4 +1,4 @@
-package com.mystride.mystride.presentation.views.app
+package com.mystride.app
 
 abstract class AbsPresenter<V> {
 

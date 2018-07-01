@@ -1,4 +1,4 @@
-package com.mystride.mystride.presentation.views.dagger
+package com.mystride.dagger
 
 import android.arch.lifecycle.ViewModel
 import dagger.MapKey

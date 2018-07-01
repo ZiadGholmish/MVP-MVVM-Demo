@@ -1,4 +1,4 @@
-package com.mystride.mystride.presentation.views.dagger
+package com.mystride.dagger
 
 import dagger.Component
 import javax.inject.Singleton
@@ -6,6 +6,5 @@ import javax.inject.Singleton
 @Singleton
 @Component(modules = [])
 interface AppComponent {
-
 
 }

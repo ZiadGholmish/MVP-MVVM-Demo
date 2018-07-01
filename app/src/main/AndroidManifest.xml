@@ -9,13 +9,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".presentation.views.landing.CreateAccountActivity">
+        <activity android:name="com.mystride.presentation.views.landing.CreateAccountActivity">
         </activity>
         <activity
-            android:name=".presentation.views.signup.SignUpFirstLastNameActivity"
+            android:name="com.mystride.presentation.views.signup.SignUpFirstLastNameActivity"
             android:label="@string/name" />
         <activity
-            android:name=".presentation.views.phone.SignUpPhoneActivity"
+            android:name="com.mystride.presentation.views.phone.SignUpPhoneActivity"
             android:label="@string/your_phone" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,7 +24,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".presentation.views.country.CountriesCodesActivity"
+            android:name="com.mystride.presentation.views.country.CountriesCodesActivity"
             android:label="@string/select_country" />
     </application>
 

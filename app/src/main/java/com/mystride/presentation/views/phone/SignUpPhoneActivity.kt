@@ -1,4 +1,4 @@
-package com.mystride.mystride.presentation.views.phone
+package com.mystride.presentation.views.phone
 
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
@@ -7,7 +7,7 @@ import android.view.MenuItem
 import com.github.vacxe.phonemask.PhoneMaskManager
 import com.jakewharton.rxbinding2.widget.RxTextView
 import com.mystride.mystride.R
-import com.mystride.mystride.presentation.views.country.CountriesCodesActivity
+import com.mystride.presentation.views.country.CountriesCodesActivity
 import io.reactivex.Observable
 import kotlinx.android.synthetic.main.activity_sign_up_phone.*
 

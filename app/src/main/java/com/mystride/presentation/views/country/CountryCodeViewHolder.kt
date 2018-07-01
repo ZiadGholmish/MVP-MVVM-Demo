@@ -1,10 +1,6 @@
-package com.mystride.mystride.presentation.views.country
-import android.support.v7.widget.CardView
+package com.mystride.presentation.views.country
 import android.support.v7.widget.RecyclerView
 import android.view.View
-import android.widget.Button
-import android.widget.ImageButton
-import android.widget.ImageView
 import android.widget.TextView
 import com.mystride.mystride.R
 

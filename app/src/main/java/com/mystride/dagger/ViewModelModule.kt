@@ -1,10 +1,6 @@
-package com.mystride.mystride.presentation.views.dagger
+package com.mystride.dagger
 
 import dagger.Module
-import android.arch.lifecycle.ViewModel
-import dagger.multibindings.IntoMap
-import dagger.Binds
-import kotlin.text.Typography.dagger
 
 
 @Module

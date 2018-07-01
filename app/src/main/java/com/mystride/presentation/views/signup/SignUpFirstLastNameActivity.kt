@@ -1,4 +1,4 @@
-package com.mystride.mystride.presentation.views.signup
+package com.mystride.presentation.views.signup
 
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
@@ -7,11 +7,10 @@ import android.view.MenuItem
 import com.jakewharton.rxbinding2.widget.RxTextView
 import com.mystride.mystride.R
 
-import com.mystride.mystride.presentation.views.phone.SignUpPhoneActivity
+import com.mystride.presentation.views.phone.SignUpPhoneActivity
 import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.functions.BiFunction
-import kotlinx.android.synthetic.main.activity_create_account.*
 import kotlinx.android.synthetic.main.activity_sign_up_first_last_name.*
 
 class SignUpFirstLastNameActivity : AppCompatActivity() {
