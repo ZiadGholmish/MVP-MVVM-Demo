@@ -4,14 +4,17 @@ import android.app.Activity
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.telephony.PhoneNumberFormattingTextWatcher
+import android.telephony.PhoneNumberUtils
 import android.util.Log
 import android.view.MenuItem
-import com.github.vacxe.phonemask.PhoneMaskManager
+import android.view.View
 import com.jakewharton.rxbinding2.widget.RxTextView
 import com.mystride.constatns.AppConstant
 import com.mystride.data.remote.models.CountryModel
 import com.mystride.mystride.R
 import com.mystride.presentation.views.country.CountriesCodesActivity
+import com.mystride.presentation.views.utils.PhoneMaskWatcher
 import io.reactivex.Observable
 import kotlinx.android.synthetic.main.activity_sign_up_phone.*
 
@@ -19,7 +22,7 @@ class SignUpPhoneActivity : AppCompatActivity() {
 
     val CHOOSE_COUNTRY_REQUEST_CODE = 100
 
-    lateinit var phoneMaskManager: PhoneMaskManager
+    lateinit var textWatcher: PhoneMaskWatcher
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,21 +30,24 @@ class SignUpPhoneActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         openCountriesCodeScreen()
+        initPhoneNumber()
 
     }
+
     private fun setSelectedCountry(selectedCountry: CountryModel) {
-        setPhoneMask(selectedCountry)
         addPhoneNumberObservable(selectedCountry)
         showSelectedCountryDetails(selectedCountry)
+        setPhoneMask(selectedCountry)
     }
 
 
+    private fun initPhoneNumber() {
+        textWatcher = PhoneMaskWatcher("(###) ####-####", phone_number)
+        phone_number.addTextChangedListener(textWatcher)
+    }
+
     private fun setPhoneMask(selectedCountry: CountryModel) {
-        phone_number.setText("")
-     phoneMaskManager =  PhoneMaskManager()
-                .withMask(selectedCountry.mask)
-                .withValueListener { }
-                .bindTo(phone_number)
+        textWatcher.mask = selectedCountry.mask
     }
 
     private fun openCountriesCodeScreen() {
@@ -55,7 +61,7 @@ class SignUpPhoneActivity : AppCompatActivity() {
         phone_number_layout.error = getString(R.string.please_enter_your_mobile_phone_number)
         val phoneNumberObservable = RxTextView
                 .textChanges(phone_number)
-                .map { phoneMaskManager.phone.length - 1 == selectedCountry.number_length }
+                .map { textWatcher.phone.length - 1 == selectedCountry.number_length }
                 .distinctUntilChanged()
         phoneNumberObservable.subscribe { isValidPhone ->
             phone_number_layout.isErrorEnabled = !isValidPhone
@@ -90,8 +96,9 @@ class SignUpPhoneActivity : AppCompatActivity() {
     private fun showSelectedCountryDetails(selectedCountry: CountryModel) {
         country_name.setText(selectedCountry.name)
         country_code.setText(selectedCountry.dial_code)
+        phone_number.setText("")
+        phone_number.hint = selectedCountry.mask_hint
     }
-
 
 
 }
