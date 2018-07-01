@@ -1,12 +1,8 @@
 package com.mystride.presentation.views.phone
 
-import android.app.Activity
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.telephony.PhoneNumberFormattingTextWatcher
-import android.telephony.PhoneNumberUtils
-import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import com.jakewharton.rxbinding2.widget.RxTextView
@@ -15,7 +11,6 @@ import com.mystride.data.remote.models.CountryModel
 import com.mystride.mystride.R
 import com.mystride.presentation.views.country.CountriesCodesActivity
 import com.mystride.presentation.views.utils.PhoneMaskWatcher
-import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.activity_sign_up_phone.*
 import java.util.concurrent.TimeUnit
@@ -33,7 +28,7 @@ class SignUpPhoneActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         openCountriesCodeScreen()
         initPhoneNumber()
-
+        openCountryCodePickList()
     }
 
     private fun setSelectedCountry(selectedCountry: CountryModel) {
@@ -41,6 +36,7 @@ class SignUpPhoneActivity : AppCompatActivity() {
         showSelectedCountryDetails(selectedCountry)
         setPhoneMask(selectedCountry)
     }
+
 
     private fun initPhoneNumber() {
         textWatcher = PhoneMaskWatcher("(###) ####-####", phone_number)
@@ -53,16 +49,15 @@ class SignUpPhoneActivity : AppCompatActivity() {
 
     private fun openCountriesCodeScreen() {
         country_name.setOnClickListener {
-            val intent = Intent(this, CountriesCodesActivity::class.java)
-            startActivityForResult(intent, CHOOSE_COUNTRY_REQUEST_CODE)
+            openCountryCodePickList()
         }
     }
 
     private fun addPhoneNumberObservable(selectedCountry: CountryModel) {
-
         RxTextView
                 .textChanges(phone_number)
-                .debounce(1, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
+                .debounce(2, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
+                .distinctUntilChanged()
                 .subscribe {
 
                     val isValidPhone = (textWatcher.phone.length - 1 == selectedCountry.number_length)
@@ -72,11 +67,11 @@ class SignUpPhoneActivity : AppCompatActivity() {
                     phone_number_layout.isErrorEnabled = !isValidPhone
                     btn_continue.isEnabled = isValidPhone
 
-                    if (!isValidPhone && isEmptyPhone) {
+                    if (!isValidPhone && isEmptyPhone && phone_number.isEnabled) {
                         phone_number_layout.error = getString(R.string.please_enter_your_mobile_phone_number)
                     }
 
-                    if (!isValidPhone && !isEmptyPhone && isShortPhone) {
+                    if (!isValidPhone && !isEmptyPhone && isShortPhone && phone_number.isEnabled) {
                         phone_number_layout.error = getString(R.string.please_enter_entire_number)
                     }
                 }
@@ -121,6 +116,11 @@ class SignUpPhoneActivity : AppCompatActivity() {
             error_view.visibility = View.VISIBLE
             country_code_layout.error = " "
         }
+    }
+
+    private fun openCountryCodePickList() {
+        val intent = Intent(this, CountriesCodesActivity::class.java)
+        startActivityForResult(intent, CHOOSE_COUNTRY_REQUEST_CODE)
     }
 
 }
