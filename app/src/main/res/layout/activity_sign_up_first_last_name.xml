@@ -12,11 +12,34 @@
         android:layout_height="wrap_content"
         android:theme="@style/AppTheme.AppBarOverlay">
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:animateLayoutChanges="true">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+            <TextView
+                android:id="@+id/tv_no_internet"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/colorPrimary"
+                android:drawablePadding="@dimen/generic_padding"
+                android:drawableStart="@drawable/ic_signal_wifi_off_black_24dp"
+                android:gravity="start|center"
+                android:paddingEnd="@dimen/activity_margin"
+                android:paddingStart="@dimen/activity_margin"
+                android:text="@string/waitng_for_network"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/font_size_20_sp"
+                android:visibility="gone" />
+
+        </FrameLayout>
+
     </android.support.design.widget.AppBarLayout>
 
 

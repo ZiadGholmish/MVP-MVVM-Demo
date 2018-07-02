@@ -17,4 +17,5 @@
     <string name="we_don_t_currently_support_that_country">We don’t currently support that country</string>
     <string name="please_enter_entire_number">Please enter your entire mobile number</string>
     <string name="please_enter_your_last_name">Please enter your last name</string>
+    <string name="waitng_for_network">Waitng for network…</string>
 </resources>

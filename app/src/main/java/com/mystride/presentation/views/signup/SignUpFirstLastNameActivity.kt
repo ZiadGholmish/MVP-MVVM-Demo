@@ -4,6 +4,8 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.View
+import android.widget.Toast
 import com.jakewharton.rxbinding2.widget.RxTextView
 import com.mystride.constatns.AppConstant
 import com.mystride.mystride.R
@@ -15,6 +17,9 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.functions.BiFunction
 import kotlinx.android.synthetic.main.activity_sign_up_first_last_name.*
 import java.util.concurrent.TimeUnit
+import io.reactivex.schedulers.Schedulers
+import com.github.pwittchen.reactivenetwork.library.rx2.ReactiveNetwork
+
 
 class SignUpFirstLastNameActivity : AppCompatActivity() {
 
@@ -25,8 +30,9 @@ class SignUpFirstLastNameActivity : AppCompatActivity() {
         setContentView(R.layout.activity_sign_up_first_last_name)
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        openPhoneActivity()
+        setButtonActions()
         setupForValidation()
+        networkStateListener()
     }
 
     private fun setupForValidation() {
@@ -74,7 +80,7 @@ class SignUpFirstLastNameActivity : AppCompatActivity() {
         return lastNameObservable
     }
 
-    private fun openPhoneActivity() {
+    private fun setPhoneAction() {
         btn_continue.setOnClickListener {
             val intent = Intent(this, SignUpPhoneActivity::class.java)
             startActivity(intent)
@@ -97,4 +103,29 @@ class SignUpFirstLastNameActivity : AppCompatActivity() {
             compositeDisposable.dispose()
         }
     }
+
+    private fun setButtonActions() {
+        setPhoneAction()
+        setNoInternetConnectionAction()
+    }
+
+    private fun networkStateListener() {
+        ReactiveNetwork.observeInternetConnectivity()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe { isConnected ->
+                    if (isConnected) {
+                        tv_no_internet.visibility = View.GONE
+                    } else {
+                        tv_no_internet.visibility = View.VISIBLE
+                    }
+                }
+    }
+
+    private fun setNoInternetConnectionAction() {
+        tv_no_internet.setOnClickListener {
+            startActivityForResult(Intent(android.provider.Settings.ACTION_SETTINGS), 0);
+        }
+    }
+
 }
