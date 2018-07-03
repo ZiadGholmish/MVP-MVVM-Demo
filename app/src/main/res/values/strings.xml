@@ -20,4 +20,6 @@
     <string name="waitng_for_network">Waitng for network…</string>
     <string name="signup_success_title">Welcome Back!</string>
     <string name="signup_success_message">Welcome back to mystride</string>
+    <string name="please_enter_your_sms_code">Please enter your SMS Code</string>
+    <string name="resend_code">Resend Code</string>
 </resources>

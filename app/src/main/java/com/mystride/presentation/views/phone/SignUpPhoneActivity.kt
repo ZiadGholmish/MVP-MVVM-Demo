@@ -151,11 +151,13 @@ class SignUpPhoneActivity : AppCompatActivity(), SignupPhoneController {
         }
     }
 
-    override fun confirmSignUp(destination: String, deliveryMedium: String, attributeName: String) {
+    override fun confirmSignUp(destination: String, deliveryMedium: String,
+                               attributeName: String, phoneNumber: String) {
         val intent = Intent(this, ConfirmSignUpScreen::class.java)
         intent.putExtra(AppConstants.DESTINATION_INTENT_NAME, destination)
         intent.putExtra(AppConstants.DELIVERYMEDIUM_INTENT_NAME, deliveryMedium)
         intent.putExtra(AppConstants.ATTRIBUTENAME_INTENT_NAME, attributeName)
+        intent.putExtra(AppConstants.PHONE_INTENT_NAME, phoneNumber)
         startActivity(intent)
     }
 

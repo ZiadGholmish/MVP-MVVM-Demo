@@ -23,6 +23,7 @@ class SignupPhoneViewModel @Inject constructor(val repository: Repository) : Vie
 
     val userResultLiveData = MutableLiveData<CreateUserResult>()
     val requestState = MutableLiveData<RequestState>()
+    private lateinit var phoneWithCode: String
 
     fun createUser(firstName: String, lastName: String, phone: String, countryCode: String) {
         requestState.value = RequestState.Loading
@@ -35,7 +36,7 @@ class SignupPhoneViewModel @Inject constructor(val repository: Repository) : Vie
      */
     private fun createUserAttributes(firstName: String, lastName: String, phone: String, countryCode: String): CognitoUserAttributes {
         val userAttributes = CognitoUserAttributes()
-        val phoneWithCode = "$countryCode$phone"
+        phoneWithCode = "$countryCode$phone"
         userAttributes.addAttribute(UserPoolConstants.COGINTO_USER_ATTRIBUTES_EMAIL, "")
         userAttributes.addAttribute(UserPoolConstants.COGINTO_USER_ATTRIBUTES_PHONE_NUMBER, phoneWithCode)
         userAttributes.addAttribute(UserPoolConstants.COGINTO_USER_ATTRIBUTES_GIVEN_NAME, firstName)
@@ -53,7 +54,8 @@ class SignupPhoneViewModel @Inject constructor(val repository: Repository) : Vie
             userResultLiveData.value = CreateUserResult.Verification(
                     cognitoUserCodeDeliveryDetails.destination,
                     cognitoUserCodeDeliveryDetails.deliveryMedium,
-                    cognitoUserCodeDeliveryDetails.attributeName)
+                    cognitoUserCodeDeliveryDetails.attributeName,
+                    phoneWithCode)
         }
     }
 

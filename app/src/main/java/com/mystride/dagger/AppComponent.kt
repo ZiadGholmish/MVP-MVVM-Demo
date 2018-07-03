@@ -1,5 +1,7 @@
 package com.mystride.dagger
 
+import com.mystride.presentation.views.confirm.ConfirmSignUpScreen
+import com.mystride.presentation.views.confirm.ConfirmSignUpViewModel
 import com.mystride.presentation.views.country.CountriesCodesActivity
 import com.mystride.presentation.views.phone.SignUpPhoneActivity
 import dagger.Component
@@ -13,4 +15,5 @@ interface AppComponent {
 
     fun inject(phoneSignUpPhoneActivity: SignUpPhoneActivity)
 
+    fun inject(confirmSignUpScreen: ConfirmSignUpScreen)
 }

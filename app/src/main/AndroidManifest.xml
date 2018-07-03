@@ -14,6 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name="com.mystride.presentation.views.landing.CreateAccountActivity">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -29,7 +30,9 @@
         <activity
             android:name="com.mystride.presentation.views.country.CountriesCodesActivity"
             android:label="@string/select_country" />
-        <activity android:name="com.mystride.presentation.views.confirm.ConfirmSignUpScreen"></activity>
+        <activity android:name="com.mystride.presentation.views.confirm.ConfirmSignUpScreen">
+
+        </activity>
     </application>
 
 </manifest>

@@ -1,6 +1,7 @@
 package com.mystride.dagger
 
 import android.arch.lifecycle.ViewModel
+import com.mystride.presentation.views.confirm.ConfirmSignUpViewModel
 import com.mystride.presentation.views.country.CountriesViewModel
 import com.mystride.presentation.views.phone.SignupPhoneViewModel
 import dagger.Binds
@@ -21,4 +22,8 @@ abstract class ViewModelModule {
     @ViewModelKey(SignupPhoneViewModel::class)
     abstract fun bindSignupPhoneViewModel(SignupPhoneViewModel: SignupPhoneViewModel): ViewModel
 
+    @Binds
+    @IntoMap
+    @ViewModelKey(ConfirmSignUpViewModel::class)
+    abstract fun bindConfirmSignUpViewModel(confirmSignUpViewModel: ConfirmSignUpViewModel): ViewModel
 }

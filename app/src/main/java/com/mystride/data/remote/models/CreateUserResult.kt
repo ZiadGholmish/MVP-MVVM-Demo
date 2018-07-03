@@ -5,8 +5,9 @@ import java.lang.Exception
 sealed class CreateUserResult {
 
     data class Verification(val destination: String,
-                            val deliveryMedium: String, val
-                            attributeName: String) : CreateUserResult()
+                            val deliveryMedium: String,
+                            val attributeName: String,
+                            val phoneNumber: String) : CreateUserResult()
 
     data class AWSError(val errorMessage: String) : CreateUserResult()
 

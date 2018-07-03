@@ -27,11 +27,15 @@ class SignUpFirstLastNameActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up_first_last_name)
-        setSupportActionBar(toolbar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        initActionBar()
         setButtonActions()
         setupForValidation()
         networkStateListener()
+    }
+
+    private fun initActionBar() {
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
     private fun setupForValidation() {

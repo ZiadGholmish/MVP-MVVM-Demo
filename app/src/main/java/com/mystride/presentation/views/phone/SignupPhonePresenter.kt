@@ -13,9 +13,8 @@ import javax.inject.Inject
 class SignupPhonePresenter @Inject constructor() : AbsPresenter<SignupPhoneController>() {
 
     private lateinit var signupPhoneViewModel: SignupPhoneViewModel
-
-    lateinit var firstName: String
-    lateinit var lastName: String
+    private lateinit var firstName: String
+    private lateinit var lastName: String
 
     fun initPresenter(signupPhoneViewModel: SignupPhoneViewModel, intent: Intent) {
         this.signupPhoneViewModel = signupPhoneViewModel
@@ -66,7 +65,9 @@ class SignupPhonePresenter @Inject constructor() : AbsPresenter<SignupPhoneContr
     private fun confirmSignUp(userResultVerification: CreateUserResult.Verification) {
         mView?.confirmSignUp(userResultVerification.destination,
                 userResultVerification.deliveryMedium,
-                userResultVerification.attributeName)
+                userResultVerification.attributeName ,
+                userResultVerification.phoneNumber
+                )
     }
 
 }

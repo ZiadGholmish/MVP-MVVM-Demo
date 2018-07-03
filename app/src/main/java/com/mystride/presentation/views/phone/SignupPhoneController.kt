@@ -4,7 +4,8 @@ import android.arch.lifecycle.LifecycleOwner
 
 interface SignupPhoneController : LifecycleOwner {
 
-    fun confirmSignUp(destination: String, deliveryMedium: String, attributeName: String)
+    fun confirmSignUp(destination: String, deliveryMedium: String,
+                      attributeName: String, phoneNumber: String)
 
     fun showError(errorMessage: String)
 

@@ -34,6 +34,17 @@
         <item name="android:paddingRight">@dimen/half_generic_padding</item>
     </style>
 
+    <style name="outlineBrandAccentButtonStyle" parent="Base.Widget.AppCompat.Button">
+        <item name="android:background">@drawable/outline_brand_accent_ripple</item>
+        <item name="android:layout_height">55dp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:textSize">@dimen/font_size_15_sp</item>
+        <item name="android:stateListAnimator">@null</item>
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:paddingLeft">@dimen/half_generic_padding</item>
+        <item name="android:paddingRight">@dimen/half_generic_padding</item>
+    </style>
+
     <style name="brandButtonStyle" parent="Base.Widget.AppCompat.Button">
         <item name="android:background">@drawable/brand_button_ripple</item>
         <item name="android:layout_height">55dp</item>
