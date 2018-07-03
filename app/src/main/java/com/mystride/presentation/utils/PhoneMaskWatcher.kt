@@ -1,4 +1,4 @@
-package com.mystride.presentation.uiutils
+package com.mystride.presentation.utils
 
 
 import android.text.Editable

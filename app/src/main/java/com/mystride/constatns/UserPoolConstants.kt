@@ -1,11 +1,11 @@
-package com.mystride.app
+package com.mystride.constatns
 
-import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUserPool
 import com.amazonaws.regions.Regions
 
-object AppHelper {
+object UserPoolConstants{
 
-    // Change the next three lines of code to run this demo on your user pool
+
+    const val USER_ID_REGEX = "/^user_id-[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}\$/i"
 
     /**
      * Add your pool id here
@@ -30,4 +30,15 @@ object AppHelper {
      */
     val cognitoRegion = Regions.DEFAULT_REGION
 
+    //coginto user attributes keys
+    const val COGINTO_USER_ATTRIBUTES_EMAIL = "email"
+    const val COGINTO_USER_ATTRIBUTES_PHONE_NUMBER = "phone_number"
+    const val COGINTO_USER_ATTRIBUTES_GIVEN_NAME = "given_name"
+    const val COGINTO_USER_ATTRIBUTES_FAMILY_NAME = "family_name"
+    const val COGINTO_USER_ATTRIBUTES_LOCALE = "locale"
+
+    //default Locale
+    const val LOCALE_US = "US"
+
+    const val USER_ID_PREFIX = "user_id-"
 }

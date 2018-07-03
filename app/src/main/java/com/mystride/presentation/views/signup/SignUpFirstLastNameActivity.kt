@@ -5,9 +5,8 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
-import android.widget.Toast
 import com.jakewharton.rxbinding2.widget.RxTextView
-import com.mystride.constatns.AppConstant
+import com.mystride.constatns.AppConstants
 import com.mystride.mystride.R
 
 import com.mystride.presentation.views.phone.SignUpPhoneActivity
@@ -54,7 +53,7 @@ class SignUpFirstLastNameActivity : AppCompatActivity() {
         val firstNameObservable = RxTextView
                 .textChanges(first_name_edit)
                 .debounce(1, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
-                .map { inputText -> inputText.isEmpty() || inputText.length > AppConstant.NAME_ALLOWED_LENGTH }
+                .map { inputText -> inputText.isEmpty() || inputText.length > AppConstants.NAME_ALLOWED_LENGTH }
                 .distinctUntilChanged()
         firstNameObservable.subscribe { isValid ->
             first_name_layout.isErrorEnabled = !isValid
@@ -69,7 +68,7 @@ class SignUpFirstLastNameActivity : AppCompatActivity() {
         val lastNameObservable = RxTextView
                 .textChanges(last_name_edit)
                 .debounce(1, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
-                .map { inputText -> inputText.isEmpty() || inputText.length > AppConstant.NAME_ALLOWED_LENGTH }
+                .map { inputText -> inputText.isEmpty() || inputText.length > AppConstants.NAME_ALLOWED_LENGTH }
                 .distinctUntilChanged()
         lastNameObservable.subscribe { isValid ->
             last_name_layout.isErrorEnabled = !isValid

@@ -8,7 +8,7 @@ import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.view.MenuItem
 import com.mystride.app.MyStrideApp
-import com.mystride.constatns.AppConstant
+import com.mystride.constatns.AppConstants
 import com.mystride.dagger.ViewModelFactory
 import com.mystride.data.remote.models.CountryModel
 import com.mystride.mystride.R
@@ -74,7 +74,7 @@ class CountriesCodesActivity : AppCompatActivity(), CountriesCodeController, Cou
 
     override fun onCountrySelected(selectedCountry: CountryModel) {
         val intent = Intent()
-        intent.putExtra(AppConstant.SELECTED_COUNTRY_INTENT_NAME, selectedCountry)
+        intent.putExtra(AppConstants.SELECTED_COUNTRY_INTENT_NAME, selectedCountry)
         setResult(Activity.RESULT_OK, intent)
         onBackPressed()
     }

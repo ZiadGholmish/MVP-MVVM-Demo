@@ -8,14 +8,12 @@ import android.view.MenuItem
 import android.view.View
 import com.jakewharton.rxbinding2.widget.RxTextView
 import com.mystride.app.MyStrideApp
-import com.mystride.constatns.AppConstant
+import com.mystride.constatns.AppConstants
 import com.mystride.dagger.ViewModelFactory
 import com.mystride.data.remote.models.CountryModel
 import com.mystride.mystride.R
 import com.mystride.presentation.views.country.CountriesCodesActivity
-import com.mystride.presentation.uiutils.PhoneMaskWatcher
-import com.mystride.presentation.views.country.CountriesCodesPresenter
-import com.mystride.presentation.views.country.CountriesViewModel
+import com.mystride.presentation.utils.PhoneMaskWatcher
 import kotlinx.android.synthetic.main.activity_sign_up_phone.*
 import javax.inject.Inject
 
@@ -107,7 +105,7 @@ class SignUpPhoneActivity : AppCompatActivity(), SignupPhoneController {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == CHOOSE_COUNTRY_REQUEST_CODE && resultCode == RESULT_OK) {
             data?.let {
-                setSelectedCountry(it.getParcelableExtra(AppConstant.SELECTED_COUNTRY_INTENT_NAME))
+                setSelectedCountry(it.getParcelableExtra(AppConstants.SELECTED_COUNTRY_INTENT_NAME))
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data)

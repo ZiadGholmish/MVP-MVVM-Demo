@@ -5,10 +5,11 @@ import android.content.Context
 import android.content.SharedPreferences
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUserPool
 import com.google.gson.Gson
-import com.mystride.app.AppHelper
+import com.mystride.constatns.UserPoolConstants
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
+
 
 @Module
 class AppModule(application: Application) {
@@ -36,7 +37,8 @@ class AppModule(application: Application) {
     @Singleton
     @Provides
     fun provideUserPool(context: Context): CognitoUserPool {
-        return CognitoUserPool(context, AppHelper.userPoolId, AppHelper.clientId, AppHelper.clientSecret, AppHelper.cognitoRegion)
+        return CognitoUserPool(context, UserPoolConstants.userPoolId, UserPoolConstants.clientId,
+                UserPoolConstants.clientSecret, UserPoolConstants.cognitoRegion)
     }
 }
 
