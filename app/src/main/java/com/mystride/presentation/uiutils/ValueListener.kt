@@ -1,4 +1,4 @@
-package com.mystride.presentation.views.utils
+package com.mystride.presentation.uiutils
 
 interface ValueListener {
     fun onPhoneChanged(phone: String)

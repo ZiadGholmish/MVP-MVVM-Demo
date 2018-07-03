@@ -1,6 +1,7 @@
 package com.mystride.dagger
 
 import com.mystride.presentation.views.country.CountriesCodesActivity
+import com.mystride.presentation.views.phone.SignUpPhoneActivity
 import dagger.Component
 import javax.inject.Singleton
 
@@ -9,5 +10,7 @@ import javax.inject.Singleton
 interface AppComponent {
 
     fun inject(countriesCodesActivity: CountriesCodesActivity)
+
+    fun inject(phoneSignUpPhoneActivity: SignUpPhoneActivity)
 
 }

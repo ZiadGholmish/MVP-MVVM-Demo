@@ -1,9 +1,6 @@
-package com.mystride.presentation.views.utils
+package com.mystride.presentation.uiutils
 
 
-import android.text.method.TextKeyListener.clear
-import android.system.Os.poll
-import android.text.Selection.getSelectionStart
 import android.text.Editable
 import android.widget.EditText
 import android.text.TextWatcher
@@ -98,11 +95,11 @@ import java.util.regex.Pattern
         }
 
         when (state) {
-            PhoneMaskWatcher.EditState.EDIT -> {
+            EditState.EDIT -> {
                 state = EditState.CLEAR
                 s.clear()
             }
-            PhoneMaskWatcher.EditState.CLEAR -> {
+            EditState.CLEAR -> {
                 state = EditState.RELEASE
                 s.append(result, 0, result.length)
             }
