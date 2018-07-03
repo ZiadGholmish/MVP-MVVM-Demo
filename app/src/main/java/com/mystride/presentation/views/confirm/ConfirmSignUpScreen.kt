@@ -3,11 +3,11 @@ package com.mystride.presentation.views.confirm
 import android.arch.lifecycle.ViewModelProviders
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import com.jakewharton.rxbinding2.widget.RxTextView
 import com.mystride.app.MyStrideApp
 import com.mystride.dagger.ViewModelFactory
+import com.mystride.data.remote.models.CountryModel
 import com.mystride.mystride.R
-import com.mystride.presentation.views.phone.SignupPhonePresenter
-import com.mystride.presentation.views.phone.SignupPhoneViewModel
 import kotlinx.android.synthetic.main.activity_confirm_sign_up_screen.*
 import javax.inject.Inject
 
@@ -25,8 +25,9 @@ class ConfirmSignUpScreen : AppCompatActivity(), ConfirmSignUpController {
         setContentView(R.layout.activity_confirm_sign_up_screen)
         initDependencyInjection()
         initActionBar()
+        addSMSCodeObservable()
+        setButtonActions()
     }
-
 
     private fun initDependencyInjection() {
         (application as MyStrideApp).appComponent.inject(this)
@@ -43,4 +44,20 @@ class ConfirmSignUpScreen : AppCompatActivity(), ConfirmSignUpController {
     override fun showPhoneNumber(phoneNumber: String) {
         title = phoneNumber
     }
+
+    private fun addSMSCodeObservable() {
+        RxTextView.textChanges(sms_code_edit)
+                .map { inputText -> inputText.length > 5 }
+                .subscribe { isValid ->
+                    btn_continue.isEnabled = isValid
+                }
+    }
+
+
+    private fun setButtonActions() {
+        btn_resend.setOnClickListener {
+            mPresenter.resendSMS()
+        }
+    }
+
 }

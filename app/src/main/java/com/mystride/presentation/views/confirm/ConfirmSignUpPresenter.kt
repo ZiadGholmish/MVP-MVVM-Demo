@@ -7,7 +7,7 @@ import com.mystride.constatns.AppConstants
 import com.mystride.presentation.views.phone.SignupPhoneViewModel
 import javax.inject.Inject
 
-class ConfirmSignUpPresenter @Inject constructor(val userPool: CognitoUserPool) : AbsPresenter<ConfirmSignUpController>() {
+class ConfirmSignUpPresenter @Inject constructor() : AbsPresenter<ConfirmSignUpController>() {
 
     private lateinit var confirmSignUpViewModel: ConfirmSignUpViewModel
 
@@ -19,6 +19,7 @@ class ConfirmSignUpPresenter @Inject constructor(val userPool: CognitoUserPool) 
     fun initPresenter(confirmSignUpViewModel: ConfirmSignUpViewModel, intent: Intent) {
         this.confirmSignUpViewModel = confirmSignUpViewModel
         getDataFromIntent(intent)
+        showPhoneNumber()
     }
 
     private fun getDataFromIntent(intent: Intent) {
@@ -27,6 +28,14 @@ class ConfirmSignUpPresenter @Inject constructor(val userPool: CognitoUserPool) 
         attributeName = intent.getStringExtra(AppConstants.ATTRIBUTENAME_INTENT_NAME)
         phoneWithCode = intent.getStringExtra(AppConstants.PHONE_INTENT_NAME)
 
+    }
+
+    private fun showPhoneNumber() {
+        mView?.showPhoneNumber(phoneWithCode)
+    }
+
+    fun resendSMS(){
+        confirmSignUpViewModel.resendSMSCode()
     }
 
 }
