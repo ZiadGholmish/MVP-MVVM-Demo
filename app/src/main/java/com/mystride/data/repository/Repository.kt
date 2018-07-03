@@ -4,6 +4,7 @@ import android.content.Context
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUserAttributes
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUserPool
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.SignUpHandler
+import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.VerificationHandler
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.mystride.data.remote.models.CountryModel
@@ -46,5 +47,10 @@ class Repository @Inject constructor(val context: Context, val gson: Gson, val u
                      userAttributes: CognitoUserAttributes, signUpHandler: SignUpHandler) {
         userPool.signUpInBackground(userId, password, userAttributes, null, signUpHandler)
     }
+
+    fun resendSMSCode(userId: String, verificationHandler: VerificationHandler) {
+        userPool.getUser(userId).resendConfirmationCodeInBackground(verificationHandler)
+    }
+
 
 }

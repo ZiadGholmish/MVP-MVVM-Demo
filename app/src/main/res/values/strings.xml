@@ -22,4 +22,5 @@
     <string name="signup_success_message">Welcome back to mystride</string>
     <string name="please_enter_your_sms_code">Please enter your SMS Code</string>
     <string name="resend_code">Resend Code</string>
+    <string name="resend_success_message">SMS code Resented</string>
 </resources>

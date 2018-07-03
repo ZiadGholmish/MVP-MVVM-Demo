@@ -236,9 +236,9 @@
     "name": "Kuwait",
     "dial_code": "+965",
     "code": "KW",
-    "mask": "(###) ####-####",
-    "mask_hint": "(---) ---- ----",
-    "number_length": 11,
+    "mask": "####-####",
+    "mask_hint": "---- ----",
+    "number_length": 8,
     "supported": true
   }
 ]

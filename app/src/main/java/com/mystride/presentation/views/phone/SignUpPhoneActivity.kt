@@ -1,6 +1,5 @@
 package com.mystride.presentation.views.phone
 
-import android.app.ProgressDialog
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
@@ -162,8 +161,10 @@ class SignUpPhoneActivity : AppCompatActivity(), SignupPhoneController {
     }
 
     override fun showError(errorMessage: String) {
-        alert("", errorMessage) {
-            yesButton { }
+        alert(errorMessage, "") {
+            yesButton {
+                hideLoading()
+            }
         }.show()
 
     }

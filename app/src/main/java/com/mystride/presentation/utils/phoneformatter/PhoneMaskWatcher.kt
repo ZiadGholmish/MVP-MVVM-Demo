@@ -36,12 +36,12 @@ import java.util.regex.Pattern
     override fun afterTextChanged(s: Editable) {
         val value = s.toString()
         if (state == EditState.RELEASE) {
-            cursorShifting = s.length - cursorShifting!!
-            cursorPosition = cursorPosition!! + cursorShifting!!
+            cursorShifting = s.length - cursorShifting
+            cursorPosition = cursorPosition+ cursorShifting
             if (cursorShifting > 0) {
                 if (cursorPosition < value.length) {
                     cursorPosition--
-                    if (!Character.isDigit(value[cursorPosition!!])) {
+                    if (!Character.isDigit(value[cursorPosition])) {
                         cursorPosition++
                     }
                 }
@@ -49,7 +49,7 @@ import java.util.regex.Pattern
                 cursorPosition++
             }
 
-            editText.setSelection(Math.max(0, Math.min(cursorPosition!!, value.length)))
+            editText.setSelection(Math.max(0, Math.min(cursorPosition, value.length)))
 
             state = EditState.IDLE
             return

@@ -6,4 +6,12 @@ interface ConfirmSignUpController : LifecycleOwner{
 
     fun showPhoneNumber(phoneNumber: String)
 
+    fun showError(errorMessage: String)
+
+    fun showResendSuccess()
+
+    fun showLoading()
+
+    fun hideLoading()
+
 }
