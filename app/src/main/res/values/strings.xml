@@ -23,4 +23,5 @@
     <string name="please_enter_your_sms_code">Please enter your SMS Code</string>
     <string name="resend_code">Resend Code</string>
     <string name="resend_success_message">SMS code Resented</string>
+    <string name="sms_code_short">Please make sure your code is six digits</string>
 </resources>

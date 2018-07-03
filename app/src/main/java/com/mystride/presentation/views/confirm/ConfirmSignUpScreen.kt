@@ -54,12 +54,20 @@ class ConfirmSignUpScreen : AppCompatActivity(), ConfirmSignUpController {
                 .map { inputText -> inputText.length > 5 }
                 .subscribe { isValid ->
                     btn_continue.isEnabled = isValid
+                    sms_code_layout.isErrorEnabled = !isValid
+                    if (!isValid) {
+                        sms_code_layout.error = getString(R.string.sms_code_short)
+                    }
                 }
     }
 
     private fun setButtonActions() {
         btn_resend.setOnClickListener {
             mPresenter.resendSMS()
+        }
+
+        btn_continue.setOnClickListener {
+            mPresenter.confirmSMSCode(sms_code_edit.text.toString().trim())
         }
     }
 

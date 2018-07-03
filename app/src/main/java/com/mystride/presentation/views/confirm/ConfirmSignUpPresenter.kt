@@ -43,6 +43,9 @@ class ConfirmSignUpPresenter @Inject constructor() : AbsPresenter<ConfirmSignUpC
         confirmSignUpViewModel.resendSMSCode()
     }
 
+    fun confirmSMSCode(smsCode: String){
+        confirmSignUpViewModel.confirmSMSCode(smsCode)
+    }
 
     /**
      * set the observers for the live data for the request state, data and errors

@@ -3,6 +3,7 @@ package com.mystride.data.repository
 import android.content.Context
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUserAttributes
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUserPool
+import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.GenericHandler
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.SignUpHandler
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.VerificationHandler
 import com.google.gson.Gson
@@ -50,6 +51,10 @@ class Repository @Inject constructor(val context: Context, val gson: Gson, val u
 
     fun resendSMSCode(userId: String, verificationHandler: VerificationHandler) {
         userPool.getUser(userId).resendConfirmationCodeInBackground(verificationHandler)
+    }
+
+    fun confirmSignUp(userId: String, smsCode: String, genericHandler: GenericHandler) {
+        userPool.getUser(userId).confirmSignUpInBackground(smsCode, true, genericHandler)
     }
 
 
