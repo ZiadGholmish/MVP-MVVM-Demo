@@ -41,8 +41,7 @@ class SignUpFirstLastNameActivity : AppCompatActivity() {
                 BiFunction { isFirstNameValid: Boolean, isLastNameValid: Boolean ->
                     (isFirstNameValid && !first_name_edit.text.isEmpty())
                             && (isLastNameValid && !last_name_edit.text.isEmpty())
-                })
-                .distinctUntilChanged()
+                }).distinctUntilChanged()
                 .subscribe { isValid ->
                     btn_continue.isEnabled = isValid
                 }
@@ -52,7 +51,7 @@ class SignUpFirstLastNameActivity : AppCompatActivity() {
     private fun addFirstNameObservable(): Observable<Boolean> {
         val firstNameObservable = RxTextView
                 .textChanges(first_name_edit)
-                .debounce(1, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
+              //  .debounce(1, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
                 .map { inputText -> inputText.isEmpty() || inputText.length > AppConstants.NAME_ALLOWED_LENGTH }
                 .distinctUntilChanged()
         firstNameObservable.subscribe { isValid ->
@@ -67,7 +66,7 @@ class SignUpFirstLastNameActivity : AppCompatActivity() {
     private fun addLastNameObservable(): Observable<Boolean> {
         val lastNameObservable = RxTextView
                 .textChanges(last_name_edit)
-                .debounce(1, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
+              //  .debounce(1, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
                 .map { inputText -> inputText.isEmpty() || inputText.length > AppConstants.NAME_ALLOWED_LENGTH }
                 .distinctUntilChanged()
         lastNameObservable.subscribe { isValid ->

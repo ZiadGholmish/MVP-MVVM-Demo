@@ -3,6 +3,7 @@ package com.mystride.data.repository
 import android.content.Context
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUserAttributes
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUserPool
+import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.SignUpHandler
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.mystride.data.remote.models.CountryModel
@@ -15,7 +16,7 @@ import java.nio.charset.Charset
 import java.util.*
 import javax.inject.Inject
 
-class Repository @Inject constructor(val context: Context, val gson: Gson , val userPool: CognitoUserPool) {
+class Repository @Inject constructor(val context: Context, val gson: Gson, val userPool: CognitoUserPool) {
 
     /**
      * load the countries list from the local json file
@@ -41,7 +42,8 @@ class Repository @Inject constructor(val context: Context, val gson: Gson , val 
                 .observeOn(AndroidSchedulers.mainThread())
     }
 
-    fun registerUser(userAttributes: CognitoUserAttributes) {
+    fun registerUser(userId: String, password: String, userAttributes: CognitoUserAttributes, signUpHandler: SignUpHandler) {
+        userPool.signUpInBackground(userId, password, userAttributes, null, signUpHandler)
     }
 
 }

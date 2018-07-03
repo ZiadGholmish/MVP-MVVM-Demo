@@ -12,4 +12,10 @@ class SignupPhonePresenter @Inject constructor() : AbsPresenter<SignupPhoneContr
         this.signupPhoneViewModel = signupPhoneViewModel
     }
 
+
+    fun registerUser(firstName: String, lastName: String, phone: String, countryCode: String) {
+        signupPhoneViewModel.createUser(firstName, lastName, phone, countryCode)
+    }
+
+
 }

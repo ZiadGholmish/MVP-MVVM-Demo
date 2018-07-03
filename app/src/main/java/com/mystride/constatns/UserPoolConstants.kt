@@ -28,7 +28,7 @@ object UserPoolConstants{
      * Set Your User Pools region.
      * e.g. if your user pools are in US East (N Virginia) then set cognitoRegion = Regions.US_EAST_1.
      */
-    val cognitoRegion = Regions.DEFAULT_REGION
+    val cognitoRegion = Regions.US_EAST_2
 
     //coginto user attributes keys
     const val COGINTO_USER_ATTRIBUTES_EMAIL = "email"

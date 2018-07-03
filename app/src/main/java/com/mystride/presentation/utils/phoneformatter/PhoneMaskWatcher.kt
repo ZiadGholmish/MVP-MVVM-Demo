@@ -1,4 +1,4 @@
-package com.mystride.presentation.utils
+package com.mystride.presentation.utils.phoneformatter
 
 
 import android.text.Editable

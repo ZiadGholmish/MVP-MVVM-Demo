@@ -13,7 +13,7 @@ import com.mystride.dagger.ViewModelFactory
 import com.mystride.data.remote.models.CountryModel
 import com.mystride.mystride.R
 import com.mystride.presentation.views.country.CountriesCodesActivity
-import com.mystride.presentation.utils.PhoneMaskWatcher
+import com.mystride.presentation.utils.phoneformatter.PhoneMaskWatcher
 import kotlinx.android.synthetic.main.activity_sign_up_phone.*
 import javax.inject.Inject
 
@@ -36,6 +36,7 @@ class SignUpPhoneActivity : AppCompatActivity(), SignupPhoneController {
         openCountriesCodeScreen()
         initPhoneNumber()
         openCountryCodePickList()
+        createUserButtonActions()
     }
 
     private fun initDependencyInjection() {
@@ -136,6 +137,12 @@ class SignUpPhoneActivity : AppCompatActivity(), SignupPhoneController {
     private fun openCountryCodePickList() {
         val intent = Intent(this, CountriesCodesActivity::class.java)
         startActivityForResult(intent, CHOOSE_COUNTRY_REQUEST_CODE)
+    }
+
+    private fun createUserButtonActions() {
+        btn_continue.setOnClickListener {
+            mPresenter.registerUser("Ziad", "Gholmish", "65164893", "+965")
+        }
     }
 
 }
