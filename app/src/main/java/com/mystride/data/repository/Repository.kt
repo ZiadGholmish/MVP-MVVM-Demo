@@ -42,7 +42,8 @@ class Repository @Inject constructor(val context: Context, val gson: Gson, val u
                 .observeOn(AndroidSchedulers.mainThread())
     }
 
-    fun registerUser(userId: String, password: String, userAttributes: CognitoUserAttributes, signUpHandler: SignUpHandler) {
+    fun registerUser(userId: String, password: String,
+                     userAttributes: CognitoUserAttributes, signUpHandler: SignUpHandler) {
         userPool.signUpInBackground(userId, password, userAttributes, null, signUpHandler)
     }
 

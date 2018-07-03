@@ -3,6 +3,13 @@ package com.mystride.constatns
 object AppConstants {
 
     const val NAME_ALLOWED_LENGTH = 4
-
     const val SELECTED_COUNTRY_INTENT_NAME = "SELECTED_COUNTRY_INTENT_NAME"
+    const val FIRST_NAME_INTENT_NAME = "FIRST_NAME"
+    const val LAST_NAME_INTENT_NAME = "LAST_NAME"
+
+    const val DESTINATION_INTENT_NAME = "DESTINATION"
+    const val DELIVERYMEDIUM_INTENT_NAME = "DELIVERYMEDIUM"
+    const val ATTRIBUTENAME_INTENT_NAME = "ATTRIBUTENAME"
+
+
 }

@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.mystride.mystride">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:name="com.mystride.app.MyStrideApp"
@@ -25,10 +25,11 @@
             android:label="@string/name" />
         <activity
             android:name="com.mystride.presentation.views.phone.SignUpPhoneActivity"
-            android:label="@string/your_phone"></activity>
+            android:label="@string/your_phone" />
         <activity
             android:name="com.mystride.presentation.views.country.CountriesCodesActivity"
             android:label="@string/select_country" />
+        <activity android:name="com.mystride.presentation.views.confirm.ConfirmSignUpScreen"></activity>
     </application>
 
 </manifest>

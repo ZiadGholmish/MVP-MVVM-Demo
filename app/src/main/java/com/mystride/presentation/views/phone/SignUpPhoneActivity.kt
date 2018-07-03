@@ -1,5 +1,6 @@
 package com.mystride.presentation.views.phone
 
+import android.app.ProgressDialog
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
@@ -14,12 +15,15 @@ import com.mystride.data.remote.models.CountryModel
 import com.mystride.mystride.R
 import com.mystride.presentation.views.country.CountriesCodesActivity
 import com.mystride.presentation.utils.phoneformatter.PhoneMaskWatcher
+import com.mystride.presentation.views.confirm.ConfirmSignUpScreen
 import kotlinx.android.synthetic.main.activity_sign_up_phone.*
+import org.jetbrains.anko.*
 import javax.inject.Inject
 
 class SignUpPhoneActivity : AppCompatActivity(), SignupPhoneController {
 
     private val CHOOSE_COUNTRY_REQUEST_CODE = 100
+
     private lateinit var textWatcher: PhoneMaskWatcher
 
     @Inject
@@ -28,11 +32,13 @@ class SignUpPhoneActivity : AppCompatActivity(), SignupPhoneController {
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up_phone)
         initDependencyInjection()
         initActionBar()
+
         openCountriesCodeScreen()
         initPhoneNumber()
         openCountryCodePickList()
@@ -43,7 +49,7 @@ class SignUpPhoneActivity : AppCompatActivity(), SignupPhoneController {
         (application as MyStrideApp).appComponent.inject(this)
         mPresenter.attachView(this)
         val signupPhoneViewModel = ViewModelProviders.of(this, viewModelFactory).get(SignupPhoneViewModel::class.java)
-        mPresenter.initPresenter(signupPhoneViewModel)
+        mPresenter.initPresenter(signupPhoneViewModel, intent)
     }
 
     private fun initActionBar() {
@@ -141,8 +147,45 @@ class SignUpPhoneActivity : AppCompatActivity(), SignupPhoneController {
 
     private fun createUserButtonActions() {
         btn_continue.setOnClickListener {
-            mPresenter.registerUser("Ziad", "Gholmish", "65164893", "+965")
+            mPresenter.registerUser(textWatcher.phone, country_code.text.toString())
         }
     }
 
+    override fun confirmSignUp(destination: String, deliveryMedium: String, attributeName: String) {
+        val intent = Intent(this, ConfirmSignUpScreen::class.java)
+        intent.putExtra(AppConstants.DESTINATION_INTENT_NAME, destination)
+        intent.putExtra(AppConstants.DELIVERYMEDIUM_INTENT_NAME, deliveryMedium)
+        intent.putExtra(AppConstants.ATTRIBUTENAME_INTENT_NAME, attributeName)
+        startActivity(intent)
+    }
+
+    override fun showError(errorMessage: String) {
+        alert("", errorMessage) {
+            yesButton { }
+        }.show()
+
+    }
+
+    override fun showLoading() {
+        enableViews(false)
+        loading_view.show()
+    }
+
+    override fun hideLoading() {
+        enableViews(true)
+        loading_view.hide()
+    }
+
+    override fun signUpSuccess() {
+        alert(getString(R.string.signup_success_title), getString(R.string.signup_success_message)) {
+            yesButton {
+                finish()
+            }
+        }.show()
+    }
+
+    private fun enableViews(isEnabled: Boolean) {
+        btn_continue.isEnabled = isEnabled
+        phone_number.isEnabled = isEnabled
+    }
 }

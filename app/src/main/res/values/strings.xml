@@ -18,4 +18,6 @@
     <string name="please_enter_entire_number">Please enter your entire mobile number</string>
     <string name="please_enter_your_last_name">Please enter your last name</string>
     <string name="waitng_for_network">Waitng for network…</string>
+    <string name="signup_success_title">Welcome Back!</string>
+    <string name="signup_success_message">Welcome back to mystride</string>
 </resources>

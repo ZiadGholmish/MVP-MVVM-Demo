@@ -1,12 +1,14 @@
 package com.mystride.presentation.utils
 
 import android.util.Log
+import android.widget.EditText
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUserAttributes
 import com.mystride.constatns.UserPoolConstants
 import java.util.*
 
-
 object AppHelper {
+
+    private const val TAG = "AppHelper"
 
     fun generateUserId(): String {
         val userId = "${UserPoolConstants.USER_ID_PREFIX}${UUID.randomUUID()}"
@@ -24,4 +26,21 @@ object AppHelper {
         }
         return passWord.toString()
     }
+
+
+    fun formatException(exception: Exception): String {
+        var formattedString = "Internal Error"
+        Log.e(TAG, " -- Error: " + exception.toString())
+        Log.getStackTraceString(exception)
+
+        val temp = exception.message
+
+        if (temp != null && !temp.isEmpty()) {
+            formattedString = temp.split("\\(")[0]
+            return formattedString
+        }
+
+        return formattedString
+    }
 }
+

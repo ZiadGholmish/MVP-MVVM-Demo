@@ -51,7 +51,6 @@ class SignUpFirstLastNameActivity : AppCompatActivity() {
     private fun addFirstNameObservable(): Observable<Boolean> {
         val firstNameObservable = RxTextView
                 .textChanges(first_name_edit)
-              //  .debounce(1, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
                 .map { inputText -> inputText.isEmpty() || inputText.length > AppConstants.NAME_ALLOWED_LENGTH }
                 .distinctUntilChanged()
         firstNameObservable.subscribe { isValid ->
@@ -66,7 +65,6 @@ class SignUpFirstLastNameActivity : AppCompatActivity() {
     private fun addLastNameObservable(): Observable<Boolean> {
         val lastNameObservable = RxTextView
                 .textChanges(last_name_edit)
-              //  .debounce(1, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
                 .map { inputText -> inputText.isEmpty() || inputText.length > AppConstants.NAME_ALLOWED_LENGTH }
                 .distinctUntilChanged()
         lastNameObservable.subscribe { isValid ->
@@ -80,7 +78,11 @@ class SignUpFirstLastNameActivity : AppCompatActivity() {
 
     private fun setPhoneAction() {
         btn_continue.setOnClickListener {
+            val firstName = first_name_edit.text.toString().trim()
+            val lastName = last_name_edit.text.toString().trim()
             val intent = Intent(this, SignUpPhoneActivity::class.java)
+            intent.putExtra(AppConstants.FIRST_NAME_INTENT_NAME, firstName)
+            intent.putExtra(AppConstants.LAST_NAME_INTENT_NAME, lastName)
             startActivity(intent)
         }
     }
@@ -125,5 +127,4 @@ class SignUpFirstLastNameActivity : AppCompatActivity() {
             startActivityForResult(Intent(android.provider.Settings.ACTION_SETTINGS), 0);
         }
     }
-
 }

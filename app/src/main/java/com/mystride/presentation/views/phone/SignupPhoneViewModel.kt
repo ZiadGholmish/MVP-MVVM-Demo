@@ -1,5 +1,6 @@
 package com.mystride.presentation.views.phone
 
+import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import android.util.Log
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUser
@@ -9,6 +10,9 @@ import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUserPool
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.SignUpHandler
 import com.mystride.constatns.AppConstants
 import com.mystride.constatns.UserPoolConstants
+import com.mystride.data.remote.models.CountryModel
+import com.mystride.data.remote.models.CreateUserResult
+import com.mystride.data.remote.models.RequestState
 import com.mystride.data.repository.Repository
 import com.mystride.presentation.utils.AppHelper
 import java.lang.Exception
@@ -17,7 +21,11 @@ import javax.inject.Inject
 
 class SignupPhoneViewModel @Inject constructor(val repository: Repository) : ViewModel(), SignUpHandler {
 
+    val userResultLiveData = MutableLiveData<CreateUserResult>()
+    val requestState = MutableLiveData<RequestState>()
+
     fun createUser(firstName: String, lastName: String, phone: String, countryCode: String) {
+        requestState.value = RequestState.Loading
         val userAttributes = createUserAttributes(firstName, lastName, phone, countryCode)
         repository.registerUser(AppHelper.generateUserId(), AppHelper.generateRandomPassword(), userAttributes, this)
     }
@@ -36,16 +44,21 @@ class SignupPhoneViewModel @Inject constructor(val repository: Repository) : Vie
         return userAttributes
     }
 
-    override fun onSuccess(user: CognitoUser?, signUpConfirmationState: Boolean,
-                           cognitoUserCodeDeliveryDetails: CognitoUserCodeDeliveryDetails?) {
+    override fun onSuccess(user: CognitoUser, signUpConfirmationState: Boolean,
+                           cognitoUserCodeDeliveryDetails: CognitoUserCodeDeliveryDetails) {
+        requestState.value = RequestState.Complete
         if (signUpConfirmationState) {
-            Log.e("signUpConfirmationState", "user already confirmed")
+            userResultLiveData.value = CreateUserResult.Success
         } else {
-            Log.e("signUpConfirmationState", "user need to be confirmed")
+            userResultLiveData.value = CreateUserResult.Verification(
+                    cognitoUserCodeDeliveryDetails.destination,
+                    cognitoUserCodeDeliveryDetails.deliveryMedium,
+                    cognitoUserCodeDeliveryDetails.attributeName)
         }
     }
 
-    override fun onFailure(exception: Exception?) {
-        exception?.printStackTrace()
+    override fun onFailure(exception: Exception) {
+        exception.printStackTrace()
+        userResultLiveData.value = CreateUserResult.AWSError(AppHelper.formatException(exception))
     }
 }
