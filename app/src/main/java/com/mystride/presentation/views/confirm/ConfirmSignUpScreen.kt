@@ -78,11 +78,11 @@ class ConfirmSignUpScreen : AppCompatActivity(), ConfirmSignUpController {
 
     override fun showLoading() {
         group.visibility = View.GONE
-        loading_view.show()
+        loading_view.visibility = View.VISIBLE
     }
 
     override fun hideLoading() {
         group.visibility = View.VISIBLE
-        loading_view.hide()
+        loading_view.visibility = View.GONE
     }
 }

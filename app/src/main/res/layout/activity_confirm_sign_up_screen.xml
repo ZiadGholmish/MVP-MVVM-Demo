@@ -96,9 +96,8 @@
         app:constraint_referenced_ids="btn_resend,btn_continue" />
 
 
-    <android.support.v4.widget.ContentLoadingProgressBar
+    <ProgressBar
         android:id="@+id/loading_view"
-        style="@style/Base.Widget.AppCompat.ProgressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/activity_margin"
