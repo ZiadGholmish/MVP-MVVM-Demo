@@ -6,6 +6,7 @@ import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUserCodeDel
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUserPool
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.GenericHandler
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.VerificationHandler
+import com.mystride.data.remote.models.ConfirmCodeResult
 import com.mystride.data.remote.models.CreateUserResult
 import com.mystride.data.remote.models.RequestState
 import com.mystride.data.remote.models.ResendSMSResult
@@ -17,6 +18,7 @@ import javax.inject.Inject
 class ConfirmSignUpViewModel @Inject constructor(val repository: Repository) : ViewModel(), VerificationHandler, GenericHandler {
 
     val resendSMSResultLiveData = MutableLiveData<ResendSMSResult>()
+    val confirmCodeResultLiveData = MutableLiveData<ConfirmCodeResult>()
     val requestState = MutableLiveData<RequestState>()
 
     fun resendSMSCode() {
@@ -39,7 +41,7 @@ class ConfirmSignUpViewModel @Inject constructor(val repository: Repository) : V
 
     override fun onSuccess(verificationCodeDeliveryMedium: CognitoUserCodeDeliveryDetails?) {
         requestState.value = RequestState.Complete
-        resendSMSResultLiveData.value = ResendSMSResult.Success
+        confirmCodeResultLiveData.value = ConfirmCodeResult.Success
     }
 
     override fun onFailure(exception: Exception) {

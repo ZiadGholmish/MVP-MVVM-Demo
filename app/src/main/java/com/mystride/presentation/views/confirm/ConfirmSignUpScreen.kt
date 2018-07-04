@@ -11,8 +11,11 @@ import com.mystride.app.MyStrideApp
 import com.mystride.dagger.ViewModelFactory
 import com.mystride.data.remote.models.CountryModel
 import com.mystride.mystride.R
+import com.mystride.presentation.views.landing.CreateAccountActivity
 import kotlinx.android.synthetic.main.activity_confirm_sign_up_screen.*
 import org.jetbrains.anko.alert
+import org.jetbrains.anko.intentFor
+import org.jetbrains.anko.singleTop
 import org.jetbrains.anko.yesButton
 import javax.inject.Inject
 
@@ -115,18 +118,21 @@ class ConfirmSignUpScreen : AppCompatActivity(), ConfirmSignUpController {
                 hideLoading()
             }
         }.show()
-
     }
 
     override fun showUserAlreadyConfirmed() {
         alert(getString(R.string.whould_you_like_to_login), getString(R.string.good_news)) {
             positiveButton(getString(R.string.yes)) {
-                finish()
+                startActivity(intentFor<CreateAccountActivity>().singleTop())
             }
 
             negativeButton(getString(R.string.no_thanks)) {
                 finish()
             }
         }.show()
+    }
+
+    override fun showConfirmedSuccess() {
+        startActivity(intentFor<CreateAccountActivity>())
     }
 }

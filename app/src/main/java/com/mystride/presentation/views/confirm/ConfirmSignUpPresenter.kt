@@ -5,6 +5,7 @@ import android.content.Intent
 import com.mystride.app.AbsPresenter
 import com.mystride.constatns.AppConstants
 import com.mystride.constatns.UserPoolConstants
+import com.mystride.data.remote.models.ConfirmCodeResult
 import com.mystride.data.remote.models.RequestState
 import com.mystride.data.remote.models.ResendSMSResult
 import javax.inject.Inject
@@ -55,6 +56,13 @@ class ConfirmSignUpPresenter @Inject constructor() : AbsPresenter<ConfirmSignUpC
                 is ResendSMSResult.AWSError -> handleErrors(it.errorMessage, it.errorCode)
             }
         })
+
+        confirmSignUpViewModel.confirmCodeResultLiveData.observe(mView!!, Observer {
+            when (it) {
+                is ConfirmCodeResult.Success -> mView?.show()
+            }
+        })
+
 
         confirmSignUpViewModel.requestState.observe(mView!!, Observer {
             when (it!!) {

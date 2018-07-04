@@ -8,6 +8,8 @@ interface ConfirmSignUpController : LifecycleOwner {
 
     fun showError(errorMessage: String)
 
+    fun showConfirmedSuccess()
+
     fun showCodeRequestLimitError()
 
     fun showCodeMismatchError()
