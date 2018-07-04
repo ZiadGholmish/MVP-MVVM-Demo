@@ -34,4 +34,7 @@
     <string name="yes">yes</string>
     <string name="no_thanks">No thanks</string>
     <string name="break_time">Break Time!</string>
+    <string name="send_code">Send Code</string>
+    <string name="please_enter_your_mobile_number">Please enter your mobile number</string>
+    <string name="login">Log in</string>
 </resources>

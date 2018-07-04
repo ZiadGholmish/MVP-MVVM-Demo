@@ -29,8 +29,11 @@
         <activity
             android:name="com.mystride.presentation.views.country.CountriesCodesActivity"
             android:label="@string/select_country" />
-        <activity android:name="com.mystride.presentation.views.confirm.ConfirmSignUpActivity"></activity>
-        <activity android:name="com.mystride.presentation.views.createhandle.CreateHandleActivity"></activity>
+        <activity android:name="com.mystride.presentation.views.confirm.ConfirmSignUpActivity" />
+        <activity android:name="com.mystride.presentation.views.createhandle.CreateHandleActivity" />
+        <activity
+            android:name="com.mystride.presentation.views.login.LoginActivity"
+            android:label="@string/login" />
     </application>
 
 </manifest>
