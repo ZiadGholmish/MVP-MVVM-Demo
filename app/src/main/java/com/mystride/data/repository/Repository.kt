@@ -67,4 +67,8 @@ class Repository @Inject constructor(val context: Context, val gson: Gson, val u
         userPool.getUser(userId).confirmSignUpInBackground(smsCode, forcedAliasCreation, genericHandler)
     }
 
+    fun setHandleForTheUser(userId: String, handle: String) {
+
+        userPool.getUser(userId).updateAttributes()
+    }
 }
