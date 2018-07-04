@@ -14,7 +14,7 @@ import com.mystride.data.remote.models.CountryModel
 import com.mystride.mystride.R
 import com.mystride.presentation.views.country.CountriesCodesActivity
 import com.mystride.presentation.utils.phoneformatter.PhoneMaskWatcher
-import com.mystride.presentation.views.confirm.ConfirmSignUpScreen
+import com.mystride.presentation.views.confirm.ConfirmSignUpActivity
 import kotlinx.android.synthetic.main.activity_sign_up_phone.*
 import org.jetbrains.anko.*
 import javax.inject.Inject
@@ -152,7 +152,7 @@ class SignUpPhoneActivity : AppCompatActivity(), SignupPhoneController {
 
     override fun confirmSignUp(destination: String, deliveryMedium: String,
                                attributeName: String, phoneNumber: String) {
-        val intent = Intent(this, ConfirmSignUpScreen::class.java)
+        val intent = Intent(this, ConfirmSignUpActivity::class.java)
         intent.putExtra(AppConstants.DESTINATION_INTENT_NAME, destination)
         intent.putExtra(AppConstants.DELIVERYMEDIUM_INTENT_NAME, deliveryMedium)
         intent.putExtra(AppConstants.ATTRIBUTENAME_INTENT_NAME, attributeName)

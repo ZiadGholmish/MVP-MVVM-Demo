@@ -53,16 +53,16 @@ class ConfirmSignUpPresenter @Inject constructor() : AbsPresenter<ConfirmSignUpC
         confirmSignUpViewModel.resendSMSResultLiveData.observe(mView!!, Observer {
             when (it) {
                 is ResendSMSResult.Success -> mView?.showResendSuccess()
-                is ResendSMSResult.AWSError -> handleErrors(it.errorMessage, it.errorCode)
+                is ResendSMSResult.AWSError -> handleErrors(it.errorMessage, it.errorCode, 0)
             }
         })
 
         confirmSignUpViewModel.confirmCodeResultLiveData.observe(mView!!, Observer {
             when (it) {
-                is ConfirmCodeResult.Success -> mView?.show()
+                is ConfirmCodeResult.Success -> mView?.showConfirmedSuccess()
+                is ConfirmCodeResult.AWSError -> handleErrors(it.errorMessage, it.errorCode, 1)
             }
         })
-
 
         confirmSignUpViewModel.requestState.observe(mView!!, Observer {
             when (it!!) {
@@ -73,9 +73,9 @@ class ConfirmSignUpPresenter @Inject constructor() : AbsPresenter<ConfirmSignUpC
         })
     }
 
-    private fun handleErrors(errorMessage: String, errorCode: String) {
+    private fun handleErrors(errorMessage: String, errorCode: String, source: Int) {
         when (errorCode) {
-            UserPoolConstants.LIMIT_EXCEEDED_EXCEPTION -> mView?.showCodeRequestLimitError()
+            UserPoolConstants.LIMIT_EXCEEDED_EXCEPTION -> if (source == 0) mView?.showCodeRequestLimitError() else mView?.showCodeWrongLimitError()
             UserPoolConstants.CODE_MISMATCH_EXCEPTION -> mView?.showCodeMismatchError()
             UserPoolConstants.ALIAS_EXISTS_EXCEPTION -> mView?.showUserAlreadyConfirmed()
             else -> mView?.showError(errorMessage)

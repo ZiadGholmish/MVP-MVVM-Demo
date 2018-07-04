@@ -15,7 +15,7 @@ import com.mystride.presentation.utils.AppHelper
 import java.lang.Exception
 import javax.inject.Inject
 
-class ConfirmSignUpViewModel @Inject constructor(val repository: Repository) : ViewModel(), VerificationHandler, GenericHandler {
+class ConfirmSignUpViewModel @Inject constructor(val repository: Repository) : ViewModel() {
 
     val resendSMSResultLiveData = MutableLiveData<ResendSMSResult>()
     val confirmCodeResultLiveData = MutableLiveData<ConfirmCodeResult>()
@@ -27,7 +27,20 @@ class ConfirmSignUpViewModel @Inject constructor(val repository: Repository) : V
             IllegalStateException("User can not be null")
             return
         }
-        repository.resendSMSCode(AppHelper.user!!, this)
+        repository.resendSMSCode(AppHelper.user!!, object : VerificationHandler {
+
+            override fun onSuccess(verificationCodeDeliveryMedium: CognitoUserCodeDeliveryDetails?) {
+                requestState.value = RequestState.Complete
+                resendSMSResultLiveData.value = ResendSMSResult.Success
+            }
+
+            override fun onFailure(exception: Exception) {
+                requestState.value = RequestState.Complete
+                val errorPair = AppHelper.formatException(exception)
+                resendSMSResultLiveData.value = ResendSMSResult.AWSError(errorPair.first, errorPair.second)
+                exception.printStackTrace()
+            }
+        })
     }
 
     fun confirmSMSCode(smsCode: String) {
@@ -36,23 +49,19 @@ class ConfirmSignUpViewModel @Inject constructor(val repository: Repository) : V
             IllegalStateException("User can not be null")
             return
         }
-        repository.confirmSignUp(AppHelper.user!!, smsCode, this)
+        repository.confirmSignUp(AppHelper.user!!, smsCode, object : GenericHandler {
+            override fun onSuccess() {
+                requestState.value = RequestState.Complete
+                confirmCodeResultLiveData.value = ConfirmCodeResult.Success
+            }
+
+            override fun onFailure(exception: Exception) {
+                requestState.value = RequestState.Complete
+                val errorPair = AppHelper.formatException(exception)
+                confirmCodeResultLiveData.value = ConfirmCodeResult.AWSError(errorPair.first, errorPair.second)
+                exception.printStackTrace()
+            }
+        })
     }
 
-    override fun onSuccess(verificationCodeDeliveryMedium: CognitoUserCodeDeliveryDetails?) {
-        requestState.value = RequestState.Complete
-        confirmCodeResultLiveData.value = ConfirmCodeResult.Success
-    }
-
-    override fun onFailure(exception: Exception) {
-        requestState.value = RequestState.Complete
-        val errorPair = AppHelper.formatException(exception)
-        resendSMSResultLiveData.value = ResendSMSResult.AWSError(errorPair.first, errorPair.second)
-        exception.printStackTrace()
-    }
-
-    override fun onSuccess() {
-        requestState.value = RequestState.Complete
-        resendSMSResultLiveData.value = ResendSMSResult.Success
-    }
 }

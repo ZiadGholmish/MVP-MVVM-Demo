@@ -4,9 +4,9 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.mystride.mystride.R
 
-class CreateHandleScreen : AppCompatActivity() {
+class CreateHandleActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_create_handle_screen)
+        setContentView(R.layout.activity_create_handle_activity)
     }
 }
