@@ -37,7 +37,7 @@ class SignupPhoneViewModel @Inject constructor(val repository: Repository) : Vie
     private fun createUserAttributes(firstName: String, lastName: String, phone: String, countryCode: String): CognitoUserAttributes {
         val userAttributes = CognitoUserAttributes()
         phoneWithCode = "$countryCode$phone"
-        userAttributes.addAttribute(UserPoolConstants.COGINTO_USER_ATTRIBUTES_EMAIL, "ziadgholmish@gmail.com")
+        userAttributes.addAttribute(UserPoolConstants.COGINTO_USER_ATTRIBUTES_EMAIL, "ziad@trycarriage.com")
         userAttributes.addAttribute(UserPoolConstants.COGINTO_USER_ATTRIBUTES_PHONE_NUMBER, phoneWithCode)
         userAttributes.addAttribute(UserPoolConstants.COGINTO_USER_ATTRIBUTES_GIVEN_NAME, firstName)
         userAttributes.addAttribute(UserPoolConstants.COGINTO_USER_ATTRIBUTES_FAMILY_NAME, lastName)

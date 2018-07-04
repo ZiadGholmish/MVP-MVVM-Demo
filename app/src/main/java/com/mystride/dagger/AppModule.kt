@@ -3,7 +3,9 @@ package com.mystride.dagger
 import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
+import com.amazonaws.auth.CognitoCachingCredentialsProvider
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUserPool
+import com.amazonaws.regions.Regions
 import com.google.gson.Gson
 import com.mystride.constatns.UserPoolConstants
 import dagger.Module
@@ -40,5 +42,16 @@ class AppModule(application: Application) {
         return CognitoUserPool(context, UserPoolConstants.userPoolId, UserPoolConstants.clientId,
                 UserPoolConstants.clientSecret, UserPoolConstants.cognitoRegion)
     }
+
+    @Singleton
+    @Provides
+    fun provideCachingCredentialsProvider(context: Context): CognitoCachingCredentialsProvider {
+        return CognitoCachingCredentialsProvider(
+                context,
+                "us-east-2:5d2c9ad9-c58a-427c-8c41-586146c0eac7", // Identity pool ID
+                Regions.US_EAST_2 )
+    }
+
+
 }
 

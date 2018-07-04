@@ -13,6 +13,8 @@ object AppHelper {
 
     var user: String? = null
 
+    var password: String? = null
+
     /**
      * generate user id using the uuid mechanism and make sure it is match the criteria
      */
@@ -34,6 +36,7 @@ object AppHelper {
         for (i in 0..31) {
             passWord.append(chars[Math.floor(Math.random() * chars.length).toInt()])
         }
+        password = passWord.toString()
         return passWord.toString()
     }
 

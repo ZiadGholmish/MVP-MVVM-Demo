@@ -1,10 +1,13 @@
 package com.mystride.data.repository
 
 import android.content.Context
+import com.amazonaws.auth.CognitoCachingCredentialsProvider
+import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoDevice
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUserAttributes
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUserPool
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.GenericHandler
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.SignUpHandler
+import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.UpdateAttributesHandler
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.VerificationHandler
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -17,8 +20,16 @@ import java.io.IOException
 import java.nio.charset.Charset
 import java.util.*
 import javax.inject.Inject
+import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUserSession
+import com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.AuthenticationContinuation
+import com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.AuthenticationDetails
+import com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.ChallengeContinuation
+import com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.MultiFactorAuthenticationContinuation
+import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.AuthenticationHandler
+import java.lang.Exception
 
-class Repository @Inject constructor(val context: Context, val gson: Gson, val userPool: CognitoUserPool) {
+
+class Repository @Inject constructor(val context: Context, val gson: Gson, val userPool: CognitoUserPool, val cognitoCachingCredentialsProvider: CognitoCachingCredentialsProvider) {
 
     /**
      * load the countries list from the local json file
@@ -63,12 +74,45 @@ class Repository @Inject constructor(val context: Context, val gson: Gson, val u
      * confirm the sign up and fail if there is a user with the same phone in the same user pool
      */
     fun confirmSignUp(userId: String, smsCode: String, genericHandler: GenericHandler) {
-        val forcedAliasCreation = false
+        val forcedAliasCreation = true
         userPool.getUser(userId).confirmSignUpInBackground(smsCode, forcedAliasCreation, genericHandler)
     }
 
-    fun setHandleForTheUser(userId: String, handle: String) {
+    fun setHandleForTheUser(userId: String, password: String, cognitoUserAttributes: CognitoUserAttributes, updateAttributesHandler: UpdateAttributesHandler) {
 
-        userPool.getUser(userId).updateAttributes()
+        Observable.create<Unit> {
+            val authenticationDetails = AuthenticationDetails(userId, password, mapOf())
+            userPool.getUser(userId).initiateUserAuthentication(authenticationDetails, object : AuthenticationHandler {
+                override fun onSuccess(userSession: CognitoUserSession?, newDevice: CognitoDevice?) {
+                    userSession
+                    cognitoCachingCredentialsProvider.logins
+                    userPool.getUser(userId).updateAttributesInBackground(cognitoUserAttributes,
+                            updateAttributesHandler)
+
+                }
+
+                override fun onFailure(exception: Exception?) {
+                    exception?.printStackTrace()
+                }
+
+                override fun getAuthenticationDetails(authenticationContinuation: AuthenticationContinuation?, userId: String?) {
+
+                    authenticationContinuation
+                }
+
+                override fun authenticationChallenge(continuation: ChallengeContinuation?) {
+                    continuation
+
+                }
+
+                override fun getMFACode(continuation: MultiFactorAuthenticationContinuation?) {
+
+                    continuation
+                }
+            }, true).run()
+
+        }.observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe { }
     }
 }

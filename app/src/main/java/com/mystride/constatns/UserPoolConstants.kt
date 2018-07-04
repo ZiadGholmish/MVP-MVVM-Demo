@@ -10,19 +10,19 @@ object UserPoolConstants {
     /**
      * Add your pool id here
      */
-    const val userPoolId = "us-east-2_2xB8rPDqd"
+    const val userPoolId = "us-east-2_WHQaROYd5"
 
     /**
      * Add you app id
      */
-    const val clientId = "7f37607uhe8j2ko2qvr9isqcto"
+    const val clientId = "st3jsq6hbhim145eq07megurn"
 
     /**
      * App secret associated with your app id - if the App id does not have an associated App secret,
      * set the App secret to null.
      * e.g. clientSecret = null;
      */
-    const val clientSecret: String = "16f84qut72aqj1k42kmg6t4qbapaotu8pq0t0h0mho5c5emjsvfm"
+    const val clientSecret: String = "22qat29qp1j30cq1f02dchu180ts4ngden0hb5rjh93bpqrn1on"
 
     /**
      * Set Your User Pools region.
@@ -35,6 +35,7 @@ object UserPoolConstants {
     const val COGINTO_USER_ATTRIBUTES_PHONE_NUMBER = "phone_number"
     const val COGINTO_USER_ATTRIBUTES_GIVEN_NAME = "given_name"
     const val COGINTO_USER_ATTRIBUTES_FAMILY_NAME = "family_name"
+    const val COGINTO_USER_ATTRIBUTES_PREFERRED_USERNAME = "preferred_username"
     const val COGINTO_USER_ATTRIBUTES_LOCALE = "locale"
 
 

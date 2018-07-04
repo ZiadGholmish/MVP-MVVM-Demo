@@ -43,12 +43,12 @@
         app:layout_constraintTop_toBottomOf="@id/app_bar_layout">
 
         <EditText
-            android:id="@+id/handle_number"
+            android:id="@+id/handle_name"
             style="@style/editTextStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/handle_is_your_unique_5_to_20_character_identiy"
-            android:inputType="phone"
+            android:inputType="text"
             android:maxLength="6"
             android:textSize="@dimen/font_size_18_sp" />
 
