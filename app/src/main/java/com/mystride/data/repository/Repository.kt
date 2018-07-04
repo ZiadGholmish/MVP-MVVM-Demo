@@ -44,18 +44,27 @@ class Repository @Inject constructor(val context: Context, val gson: Gson, val u
                 .observeOn(AndroidSchedulers.mainThread())
     }
 
+    /**
+     * fire tha action to register the user to the user pool
+     */
     fun registerUser(userId: String, password: String,
                      userAttributes: CognitoUserAttributes, signUpHandler: SignUpHandler) {
         userPool.signUpInBackground(userId, password, userAttributes, null, signUpHandler)
     }
 
+    /**
+     * resend the sms code to the phone number
+     */
     fun resendSMSCode(userId: String, verificationHandler: VerificationHandler) {
         userPool.getUser(userId).resendConfirmationCodeInBackground(verificationHandler)
     }
 
+    /**
+     * confirm the sign up and fail if there is a user with the same phone in the same user pool
+     */
     fun confirmSignUp(userId: String, smsCode: String, genericHandler: GenericHandler) {
-        userPool.getUser(userId).confirmSignUpInBackground(smsCode, true, genericHandler)
+        val forcedAliasCreation = false
+        userPool.getUser(userId).confirmSignUpInBackground(smsCode, forcedAliasCreation, genericHandler)
     }
-
 
 }

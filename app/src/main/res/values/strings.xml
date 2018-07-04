@@ -24,4 +24,14 @@
     <string name="resend_code">Resend Code</string>
     <string name="resend_success_message">SMS code Resented</string>
     <string name="sms_code_short">Please make sure your code is six digits</string>
+    <string name="whoa">Whoa!</string>
+    <string name="invalid_code_message">Please double-check the code and enter it again.</string>
+    <string name="invalid_code">Invalid Code</string>
+    <string name="code_request_limit_message">You have requested to many new codes. Please try again in a few hours.</string>
+    <string name="too_many_wrong_codes">The wrong code was entered too many times. Please try again in a few hours.</string>
+    <string name="good_news">Good news!</string>
+    <string name="whould_you_like_to_login">You already have a mystride account. Would you like to login?</string>
+    <string name="yes">yes</string>
+    <string name="no_thanks">No thanks</string>
+    <string name="break_time">Break Time!</string>
 </resources>

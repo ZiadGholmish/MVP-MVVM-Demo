@@ -44,10 +44,10 @@ class ConfirmSignUpViewModel @Inject constructor(val repository: Repository) : V
 
     override fun onFailure(exception: Exception) {
         requestState.value = RequestState.Complete
-        resendSMSResultLiveData.value = ResendSMSResult.AWSError(AppHelper.formatException(exception))
+        val errorPair = AppHelper.formatException(exception)
+        resendSMSResultLiveData.value = ResendSMSResult.AWSError(errorPair.first, errorPair.second)
         exception.printStackTrace()
     }
-
 
     override fun onSuccess() {
         requestState.value = RequestState.Complete

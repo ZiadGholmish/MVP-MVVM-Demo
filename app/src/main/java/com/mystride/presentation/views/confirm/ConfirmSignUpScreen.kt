@@ -77,7 +77,6 @@ class ConfirmSignUpScreen : AppCompatActivity(), ConfirmSignUpController {
                 hideLoading()
             }
         }.show()
-
     }
 
     override fun showResendSuccess() {
@@ -92,5 +91,42 @@ class ConfirmSignUpScreen : AppCompatActivity(), ConfirmSignUpController {
     override fun hideLoading() {
         group.visibility = View.VISIBLE
         loading_view.visibility = View.GONE
+    }
+
+    override fun showCodeRequestLimitError() {
+        alert(getString(R.string.code_request_limit_message), getString(R.string.whoa)) {
+            yesButton {
+                hideLoading()
+            }
+        }.show()
+    }
+
+    override fun showCodeMismatchError() {
+        alert(getString(R.string.invalid_code_message), getString(R.string.invalid_code)) {
+            yesButton {
+                hideLoading()
+            }
+        }.show()
+    }
+
+    override fun showCodeWrongLimitError() {
+        alert(getString(R.string.too_many_wrong_codes), getString(R.string.break_time)) {
+            yesButton {
+                hideLoading()
+            }
+        }.show()
+
+    }
+
+    override fun showUserAlreadyConfirmed() {
+        alert(getString(R.string.whould_you_like_to_login), getString(R.string.good_news)) {
+            positiveButton(getString(R.string.yes)) {
+                finish()
+            }
+
+            negativeButton(getString(R.string.no_thanks)) {
+                finish()
+            }
+        }.show()
     }
 }

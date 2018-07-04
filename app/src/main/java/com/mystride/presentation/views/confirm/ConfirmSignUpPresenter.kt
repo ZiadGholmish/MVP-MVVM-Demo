@@ -2,13 +2,11 @@ package com.mystride.presentation.views.confirm
 
 import android.arch.lifecycle.Observer
 import android.content.Intent
-import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUserPool
 import com.mystride.app.AbsPresenter
 import com.mystride.constatns.AppConstants
-import com.mystride.data.remote.models.CreateUserResult
+import com.mystride.constatns.UserPoolConstants
 import com.mystride.data.remote.models.RequestState
 import com.mystride.data.remote.models.ResendSMSResult
-import com.mystride.presentation.views.phone.SignupPhoneViewModel
 import javax.inject.Inject
 
 class ConfirmSignUpPresenter @Inject constructor() : AbsPresenter<ConfirmSignUpController>() {
@@ -43,7 +41,7 @@ class ConfirmSignUpPresenter @Inject constructor() : AbsPresenter<ConfirmSignUpC
         confirmSignUpViewModel.resendSMSCode()
     }
 
-    fun confirmSMSCode(smsCode: String){
+    fun confirmSMSCode(smsCode: String) {
         confirmSignUpViewModel.confirmSMSCode(smsCode)
     }
 
@@ -54,7 +52,7 @@ class ConfirmSignUpPresenter @Inject constructor() : AbsPresenter<ConfirmSignUpC
         confirmSignUpViewModel.resendSMSResultLiveData.observe(mView!!, Observer {
             when (it) {
                 is ResendSMSResult.Success -> mView?.showResendSuccess()
-                is ResendSMSResult.AWSError -> mView?.showError(it.errorMessage)
+                is ResendSMSResult.AWSError -> handleErrors(it.errorMessage, it.errorCode)
             }
         })
 
@@ -67,4 +65,12 @@ class ConfirmSignUpPresenter @Inject constructor() : AbsPresenter<ConfirmSignUpC
         })
     }
 
+    private fun handleErrors(errorMessage: String, errorCode: String) {
+        when (errorCode) {
+            UserPoolConstants.LIMIT_EXCEEDED_EXCEPTION -> mView?.showCodeRequestLimitError()
+            UserPoolConstants.CODE_MISMATCH_EXCEPTION -> mView?.showCodeMismatchError()
+            UserPoolConstants.ALIAS_EXISTS_EXCEPTION -> mView?.showUserAlreadyConfirmed()
+            else -> mView?.showError(errorMessage)
+        }
+    }
 }
