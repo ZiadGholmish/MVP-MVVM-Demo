@@ -11,6 +11,7 @@ import com.mystride.app.MyStrideApp
 import com.mystride.dagger.ViewModelFactory
 import com.mystride.data.remote.models.CountryModel
 import com.mystride.mystride.R
+import com.mystride.presentation.views.createhandle.CreateHandleScreen
 import com.mystride.presentation.views.landing.CreateAccountActivity
 import kotlinx.android.synthetic.main.activity_confirm_sign_up_screen.*
 import org.jetbrains.anko.alert
@@ -133,6 +134,6 @@ class ConfirmSignUpScreen : AppCompatActivity(), ConfirmSignUpController {
     }
 
     override fun showConfirmedSuccess() {
-        startActivity(intentFor<CreateAccountActivity>())
+        startActivity(intentFor<CreateHandleScreen>())
     }
 }
