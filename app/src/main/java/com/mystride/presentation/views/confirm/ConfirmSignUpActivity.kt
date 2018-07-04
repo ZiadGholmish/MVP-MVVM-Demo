@@ -14,10 +14,7 @@ import com.mystride.presentation.views.createhandle.CreateHandleActivity
 import com.mystride.presentation.views.landing.CreateAccountActivity
 import com.mystride.presentation.views.login.LoginActivity
 import kotlinx.android.synthetic.main.activity_confirm_sign_up_activity.*
-import org.jetbrains.anko.alert
-import org.jetbrains.anko.intentFor
-import org.jetbrains.anko.singleTop
-import org.jetbrains.anko.yesButton
+import org.jetbrains.anko.*
 import javax.inject.Inject
 
 class ConfirmSignUpActivity : AppCompatActivity(), ConfirmSignUpController {
@@ -124,10 +121,10 @@ class ConfirmSignUpActivity : AppCompatActivity(), ConfirmSignUpController {
     override fun showUserAlreadyConfirmed() {
         alert(getString(R.string.whould_you_like_to_login), getString(R.string.good_news)) {
             positiveButton(getString(R.string.yes)) {
-                startActivity(intentFor<LoginActivity>().singleTop())
+                startActivity(intentFor<LoginActivity>().clearTop())
             }
             negativeButton(getString(R.string.no_thanks)) {
-                startActivity(intentFor<CreateAccountActivity>().singleTop())
+                startActivity(intentFor<CreateAccountActivity>().clearTop())
             }
         }.show()
     }

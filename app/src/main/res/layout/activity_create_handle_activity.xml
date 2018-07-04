@@ -6,4 +6,64 @@
     android:layout_height="match_parent"
     tools:context="com.mystride.presentation.views.createhandle.CreateHandleActivity">
 
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/app_bar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            app:contentInsetStart="0dp"
+            app:popupTheme="@style/AppTheme.PopupOverlay">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/handle"
+                android:textSize="@dimen/font_size_18_sp" />
+        </android.support.v7.widget.Toolbar>
+    </android.support.design.widget.AppBarLayout>
+
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/handle_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/activity_margin_2"
+        android:layout_marginStart="@dimen/activity_margin_2"
+        android:layout_marginTop="@dimen/activity_margin_3"
+        android:textColorHint="@color/secondaryText"
+        app:hintTextAppearance="@style/editTextHintAppearance"
+        app:layout_constraintTop_toBottomOf="@id/app_bar_layout">
+
+        <EditText
+            android:id="@+id/handle_number"
+            style="@style/editTextStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/handle_is_your_unique_5_to_20_character_identiy"
+            android:inputType="phone"
+            android:maxLength="6"
+            android:textSize="@dimen/font_size_18_sp" />
+
+    </android.support.design.widget.TextInputLayout>
+
+
+    <Button
+        android:id="@+id/btn_continue"
+        style="@style/brandButtonStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_margin_2"
+        android:text="@string/send_code"
+        app:layout_constraintEnd_toEndOf="@id/handle_layout"
+        app:layout_constraintStart_toStartOf="@id/handle_layout"
+        app:layout_constraintTop_toBottomOf="@id/handle_layout" />
+
 </android.support.constraint.ConstraintLayout>

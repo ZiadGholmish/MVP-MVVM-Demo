@@ -37,4 +37,6 @@
     <string name="send_code">Send Code</string>
     <string name="please_enter_your_mobile_number">Please enter your mobile number</string>
     <string name="login">Log in</string>
+    <string name="handle">Handle</string>
+    <string name="handle_is_your_unique_5_to_20_character_identiy">Handle is your unique 5 to 20 character identiy</string>
 </resources>
