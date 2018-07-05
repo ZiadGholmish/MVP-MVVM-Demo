@@ -34,6 +34,7 @@
         <activity
             android:name="com.mystride.presentation.views.login.LoginActivity"
             android:label="@string/login" />
+        <activity android:name="com.mystride.presentation.views.home.HomeActivity"></activity>
     </application>
 
 </manifest>

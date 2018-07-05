@@ -4,8 +4,10 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.mystride.mystride.R
+import com.mystride.presentation.views.createhandle.CreateHandleActivity
 import com.mystride.presentation.views.signup.SignUpFirstLastNameActivity
 import kotlinx.android.synthetic.main.activity_create_account.*
+import org.jetbrains.anko.intentFor
 
 class CreateAccountActivity : AppCompatActivity() {
 
@@ -17,8 +19,7 @@ class CreateAccountActivity : AppCompatActivity() {
 
     private fun openSignUp() {
         btn_sign_up.setOnClickListener {
-            val intent = Intent(this, SignUpFirstLastNameActivity::class.java)
-            startActivity(intent)
+            startActivity(intentFor<SignUpFirstLastNameActivity>())
         }
     }
 }

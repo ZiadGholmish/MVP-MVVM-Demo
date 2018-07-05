@@ -10,9 +10,11 @@ import com.mystride.dagger.ViewModelFactory
 import com.mystride.mystride.R
 import com.mystride.presentation.views.confirm.ConfirmSignUpPresenter
 import com.mystride.presentation.views.confirm.ConfirmSignUpViewModel
+import com.mystride.presentation.views.home.HomeActivity
 import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.activity_create_handle_activity.*
 import org.jetbrains.anko.alert
+import org.jetbrains.anko.intentFor
 import org.jetbrains.anko.yesButton
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
@@ -47,7 +49,7 @@ class CreateHandleActivity : AppCompatActivity(), CreateHandlerController {
 
     private fun setButtonActions() {
         btn_continue.setOnClickListener {
-            mPresenter.checkHandler(handle_name.text.toString().trim())
+            startActivity(intentFor<HomeActivity>())
         }
     }
 
@@ -112,5 +114,6 @@ class CreateHandleActivity : AppCompatActivity(), CreateHandlerController {
         handle_layout.isErrorEnabled = false
         mPresenter.checkHandler(handle)
     }
+
 
 }

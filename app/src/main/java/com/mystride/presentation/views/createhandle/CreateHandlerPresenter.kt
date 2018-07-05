@@ -14,6 +14,7 @@ import javax.inject.Inject
 class CreateHandlerPresenter @Inject constructor() : AbsPresenter<CreateHandlerController>() {
 
     private lateinit var createHandlerViewModel: CreateHandlerViewModel
+    var handle = ""
 
     fun initPresenter(createHandlerViewModel: CreateHandlerViewModel) {
         this.createHandlerViewModel = createHandlerViewModel
@@ -21,6 +22,7 @@ class CreateHandlerPresenter @Inject constructor() : AbsPresenter<CreateHandlerC
     }
 
     fun checkHandler(handle: String) {
+        this.handle = handle
         createHandlerViewModel.setHandleName(handle)
     }
 
