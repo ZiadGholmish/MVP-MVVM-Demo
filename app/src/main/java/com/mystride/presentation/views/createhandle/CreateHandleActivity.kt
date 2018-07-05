@@ -3,12 +3,18 @@ package com.mystride.presentation.views.createhandle
 import android.arch.lifecycle.ViewModelProviders
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import com.jakewharton.rxbinding2.widget.RxTextView
 import com.mystride.app.MyStrideApp
 import com.mystride.dagger.ViewModelFactory
 import com.mystride.mystride.R
 import com.mystride.presentation.views.confirm.ConfirmSignUpPresenter
 import com.mystride.presentation.views.confirm.ConfirmSignUpViewModel
+import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.activity_create_handle_activity.*
+import org.jetbrains.anko.alert
+import org.jetbrains.anko.yesButton
+import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 class CreateHandleActivity : AppCompatActivity(), CreateHandlerController {
@@ -25,6 +31,7 @@ class CreateHandleActivity : AppCompatActivity(), CreateHandlerController {
         initDependencyInjection()
         initActionBar()
         setButtonActions()
+        addHandleObservable()
     }
 
     private fun initDependencyInjection() {
@@ -43,4 +50,67 @@ class CreateHandleActivity : AppCompatActivity(), CreateHandlerController {
             mPresenter.checkHandler(handle_name.text.toString().trim())
         }
     }
+
+    override fun showHandleAlreadyTaken() {
+        alert(getString(R.string.handle_already_taken_message), "") {
+            yesButton {
+                hideLoading()
+            }
+        }.show()
+    }
+
+    override fun showHandleAvailable() {
+        img_handle_available.visibility = View.VISIBLE
+        btn_continue.isEnabled = true
+    }
+
+    override fun showLoading() {
+        img_handle_available.visibility = View.GONE
+        loading_view.visibility = View.VISIBLE
+    }
+
+    override fun hideLoading() {
+        img_handle_available.visibility = View.GONE
+        loading_view.visibility = View.GONE
+    }
+
+    override fun showError(errorMessage: String) {
+        alert(errorMessage, "") {
+            yesButton {
+                hideLoading()
+            }
+        }.show()
+    }
+
+    override fun showLimitError() {
+        alert(getString(R.string.handle_request_limit_message), getString(R.string.whoa)) {
+            yesButton {
+                hideLoading()
+            }
+        }.show()
+    }
+
+    private fun addHandleObservable() {
+        RxTextView.textChanges(handle_name)
+                .debounce(1, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
+                .subscribe { inputText ->
+                    if (inputText.length < 5) {
+                        showHandleShort()
+                    } else {
+                        checkHandle(inputText.toString().trim())
+                    }
+                }
+    }
+
+    private fun showHandleShort() {
+        handle_layout.isErrorEnabled = true
+        handle_layout.error = getString(R.string.handle_short)
+        img_handle_available.visibility = View.GONE
+    }
+
+    private fun checkHandle(handle: String) {
+        handle_layout.isErrorEnabled = false
+        mPresenter.checkHandler(handle)
+    }
+
 }

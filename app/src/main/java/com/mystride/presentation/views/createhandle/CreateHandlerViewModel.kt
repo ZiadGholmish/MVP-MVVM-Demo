@@ -12,35 +12,47 @@ import com.mystride.data.repository.Repository
 import com.mystride.presentation.utils.AppHelper
 import java.lang.Exception
 import javax.inject.Inject
-import com.amazonaws.regions.Regions
-import com.amazonaws.auth.CognitoCachingCredentialsProvider
-import com.amazonaws.auth.CognitoCredentialsProvider
-import com.amazonaws.mobileconnectors.cognitoidentityprovider.util.CognitoIdentityProviderClientConfig
-import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUserSession
-import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.AuthenticationHandler
+import com.mystride.data.remote.models.CreateHandleResult
 
-
-class CreateHandlerViewModel @Inject constructor(val repository: Repository, val context: Context) : ViewModel(), UpdateAttributesHandler {
+class CreateHandlerViewModel @Inject constructor(val repository: Repository, val context: Context) : ViewModel() {
 
     val requestState = MutableLiveData<RequestState>()
+    val createHandleResultLiveData = MutableLiveData<CreateHandleResult>()
 
     fun setHandleName(handleName: String) {
-        requestState.value = RequestState.Loading
+
         if (AppHelper.user == null) {
             IllegalStateException("User can not be null")
             return
         }
+        requestState.value = RequestState.Loading
+        val userAttributes = createUSerAttributes(handleName)
+        updateHandle(userAttributes)
+    }
+
+    /**
+     * take the handle name(preferred_username) then return user attribute object
+     */
+    private fun createUSerAttributes(handleName: String): CognitoUserAttributes {
         val userAttributes = CognitoUserAttributes()
         userAttributes.addAttribute(UserPoolConstants.COGINTO_USER_ATTRIBUTES_PREFERRED_USERNAME, handleName)
-        repository.setHandleForTheUser(AppHelper.user!!,AppHelper.password!!, userAttributes, this)
+        return userAttributes
     }
 
+    private fun updateHandle(userAttributes: CognitoUserAttributes) {
+        repository.setHandleForTheUser(AppHelper.user!!, AppHelper.password!!, userAttributes, object : UpdateAttributesHandler {
+            override fun onSuccess(attributesVerificationList: MutableList<CognitoUserCodeDeliveryDetails>?) {
+                requestState.value = RequestState.Complete
+                createHandleResultLiveData.value = CreateHandleResult.Success
+            }
 
-    override fun onSuccess(attributesVerificationList: MutableList<CognitoUserCodeDeliveryDetails>?) {
-        attributesVerificationList
+            override fun onFailure(exception: Exception) {
+                requestState.value = RequestState.Complete
+                val errorPair = AppHelper.formatException(exception)
+                createHandleResultLiveData.value = CreateHandleResult.AWSError(errorPair.first, errorPair.second)
+                exception.printStackTrace()
+            }
+        })
     }
 
-    override fun onFailure(exception: Exception?) {
-        exception?.printStackTrace()
-    }
 }
