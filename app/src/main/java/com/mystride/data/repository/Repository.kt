@@ -74,7 +74,7 @@ class Repository @Inject constructor(val context: Context, val gson: Gson, val u
      * confirm the sign up and fail if there is a user with the same phone in the same user pool
      */
     fun confirmSignUp(userId: String, smsCode: String, genericHandler: GenericHandler) {
-        val forcedAliasCreation = true
+        val forcedAliasCreation = false
         userPool.getUser(userId).confirmSignUpInBackground(smsCode, forcedAliasCreation, genericHandler)
     }
 
