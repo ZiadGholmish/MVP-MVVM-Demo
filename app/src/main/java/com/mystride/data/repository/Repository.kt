@@ -79,7 +79,6 @@ class Repository @Inject constructor(val context: Context, val gson: Gson, val u
     }
 
     fun setHandleForTheUser(userId: String, password: String, cognitoUserAttributes: CognitoUserAttributes, updateAttributesHandler: UpdateAttributesHandler) {
-
         Observable.create<Unit> {
             val authenticationDetails = AuthenticationDetails(userId, password, mapOf())
             userPool.getUser(userId).initiateUserAuthentication(authenticationDetails, object : AuthenticationHandler {
@@ -88,7 +87,6 @@ class Repository @Inject constructor(val context: Context, val gson: Gson, val u
                     cognitoCachingCredentialsProvider.logins
                     userPool.getUser(userId).updateAttributesInBackground(cognitoUserAttributes,
                             updateAttributesHandler)
-
                 }
 
                 override fun onFailure(exception: Exception?) {
@@ -96,18 +94,12 @@ class Repository @Inject constructor(val context: Context, val gson: Gson, val u
                 }
 
                 override fun getAuthenticationDetails(authenticationContinuation: AuthenticationContinuation?, userId: String?) {
-
-                    authenticationContinuation
                 }
 
                 override fun authenticationChallenge(continuation: ChallengeContinuation?) {
-                    continuation
-
                 }
 
                 override fun getMFACode(continuation: MultiFactorAuthenticationContinuation?) {
-
-                    continuation
                 }
             }, true).run()
 
