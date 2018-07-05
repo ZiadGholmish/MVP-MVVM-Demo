@@ -59,6 +59,7 @@ class CreateHandleActivity : AppCompatActivity(), CreateHandlerController {
                 hideLoading()
                 handle_layout.isErrorEnabled = true
                 handle_layout.error = getString(R.string.handle_taken_error)
+
             }
         }.show()
     }
@@ -69,6 +70,7 @@ class CreateHandleActivity : AppCompatActivity(), CreateHandlerController {
     }
 
     override fun showLoading() {
+        btn_continue.isEnabled = false
         img_handle_available.visibility = View.INVISIBLE
         loading_view.visibility = View.VISIBLE
     }
@@ -110,6 +112,7 @@ class CreateHandleActivity : AppCompatActivity(), CreateHandlerController {
         handle_layout.isErrorEnabled = true
         handle_layout.error = getString(R.string.handle_short)
         img_handle_available.visibility = View.GONE
+        btn_continue.isEnabled = false
     }
 
     private fun checkHandle(handle: String) {
