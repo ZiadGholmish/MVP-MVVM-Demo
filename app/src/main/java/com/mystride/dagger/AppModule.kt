@@ -48,8 +48,8 @@ class AppModule(application: Application) {
     fun provideCachingCredentialsProvider(context: Context): CognitoCachingCredentialsProvider {
         return CognitoCachingCredentialsProvider(
                 context,
-                "us-east-2:5d2c9ad9-c58a-427c-8c41-586146c0eac7", // Identity pool ID
-                Regions.US_EAST_2 )
+                UserPoolConstants.identityId, // Identity pool ID
+                Regions.US_EAST_2)
     }
 
 

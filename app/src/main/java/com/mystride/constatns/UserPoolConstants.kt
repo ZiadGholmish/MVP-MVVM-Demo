@@ -24,6 +24,8 @@ object UserPoolConstants {
      */
     const val clientSecret: String = "22qat29qp1j30cq1f02dchu180ts4ngden0hb5rjh93bpqrn1on"
 
+    const val identityId = "us-east-2:5d2c9ad9-c58a-427c-8c41-586146c0eac7"
+
     /**
      * Set Your User Pools region.
      * e.g. if your user pools are in US East (N Virginia) then set cognitoRegion = Regions.US_EAST_1.
