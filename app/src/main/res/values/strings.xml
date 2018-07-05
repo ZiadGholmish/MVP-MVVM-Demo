@@ -42,4 +42,5 @@
     <string name="handle_already_taken_message">Ugh!  Someone just beat you to that Handle. Please choose a differnet one.</string>
     <string name="handle_request_limit_message">You have tried too much please try in a few hours</string>
     <string name="handle_short">Your Handle must be 5 to 20 charachters long</string>
+    <string name="handle_taken_error">The Handle ‘DaveRider’ is not available</string>
 </resources>

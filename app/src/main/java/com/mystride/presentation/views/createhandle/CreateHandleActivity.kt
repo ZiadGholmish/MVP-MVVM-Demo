@@ -57,6 +57,8 @@ class CreateHandleActivity : AppCompatActivity(), CreateHandlerController {
         alert(getString(R.string.handle_already_taken_message), "") {
             yesButton {
                 hideLoading()
+                handle_layout.isErrorEnabled = true
+                handle_layout.error = getString(R.string.handle_taken_error)
             }
         }.show()
     }
@@ -67,12 +69,12 @@ class CreateHandleActivity : AppCompatActivity(), CreateHandlerController {
     }
 
     override fun showLoading() {
-        img_handle_available.visibility = View.GONE
+        img_handle_available.visibility = View.INVISIBLE
         loading_view.visibility = View.VISIBLE
     }
 
     override fun hideLoading() {
-        img_handle_available.visibility = View.GONE
+        img_handle_available.visibility = View.INVISIBLE
         loading_view.visibility = View.GONE
     }
 
@@ -96,7 +98,7 @@ class CreateHandleActivity : AppCompatActivity(), CreateHandlerController {
         RxTextView.textChanges(handle_name)
                 .debounce(1, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
                 .subscribe { inputText ->
-                    if (inputText.length < 5) {
+                    if (inputText.length < 3) {
                         showHandleShort()
                     } else {
                         checkHandle(inputText.toString().trim())

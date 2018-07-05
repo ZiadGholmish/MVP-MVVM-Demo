@@ -35,7 +35,7 @@
     <android.support.design.widget.TextInputLayout
         android:id="@+id/handle_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="85dp"
         android:layout_marginEnd="@dimen/activity_margin_2"
         android:layout_marginStart="@dimen/activity_margin_2"
         android:layout_marginTop="@dimen/activity_margin_3"
@@ -60,7 +60,7 @@
         android:id="@+id/img_handle_available"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/activity_margin"
+        android:layout_marginBottom="@dimen/activity_margin_4"
         android:layout_marginEnd="@dimen/generic_padding"
         android:src="@drawable/ic_done_black_24dp"
         android:visibility="gone"
@@ -71,7 +71,7 @@
         android:id="@+id/loading_view"
         android:layout_width="20dp"
         android:layout_height="20dp"
-        android:layout_marginBottom="@dimen/activity_margin"
+        android:layout_marginBottom="@dimen/activity_margin_4"
         android:layout_marginEnd="@dimen/generic_padding"
         android:layout_marginTop="@dimen/activity_margin_2"
         android:visibility="gone"
@@ -87,6 +87,6 @@
         android:text="@string/send_code"
         app:layout_constraintEnd_toEndOf="@id/handle_layout"
         app:layout_constraintStart_toStartOf="@id/handle_layout"
-        app:layout_constraintTop_toBottomOf="@id/loading_view" />
+        app:layout_constraintTop_toBottomOf="@id/handle_layout" />
 
 </android.support.constraint.ConstraintLayout>
