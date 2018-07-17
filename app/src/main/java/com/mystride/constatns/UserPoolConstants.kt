@@ -10,21 +10,21 @@ object UserPoolConstants {
     /**
      * Add your pool id here
      */
-    const val userPoolId = "us-east-2_WHQaROYd5"
+    const val userPoolId = "" //userpool id from was console 
 
     /**
      * Add you app id
      */
-    const val clientId = "st3jsq6hbhim145eq07megurn"
+    const val clientId = "" //client id to access this user poll aws console 
 
     /**
      * App secret associated with your app id - if the App id does not have an associated App secret,
      * set the App secret to null.
      * e.g. clientSecret = null;
      */
-    const val clientSecret: String = "22qat29qp1j30cq1f02dchu180ts4ngden0hb5rjh93bpqrn1on"
+    const val clientSecret: String = "" //aws console 
 
-    const val identityId = "us-east-2:5d2c9ad9-c58a-427c-8c41-586146c0eac7"
+    const val identityId = "" //aws console
 
     /**
      * Set Your User Pools region.
